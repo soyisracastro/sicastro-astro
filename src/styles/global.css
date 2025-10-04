@@ -1,0 +1,155 @@
+/* Importar fuentes de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+/* Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Configuración de fuentes por defecto */
+  html {
+    font-family: 'Quicksand', sans-serif;
+    @apply text-dark;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Libre Caslon Display', serif;
+    @apply text-dark;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Mejoras de renderizado de texto */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    @apply bg-background text-dark;
+  }
+}
+
+@layer components {
+  /* Contenedor principal con máximo ancho */
+  .container-custom {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Botón primario */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-primary hover:bg-primary-dark transition-colors duration-200 rounded-lg shadow-md hover:shadow-lg;
+  }
+
+  /* Botón secundario */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-primary bg-white border-2 border-primary hover:bg-primary hover:text-white transition-colors duration-200 rounded-lg;
+  }
+
+  /* Botón outline */
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-dark bg-transparent border-2 border-dark hover:bg-dark hover:text-white transition-colors duration-200 rounded-lg;
+  }
+
+  /* Sección con padding estándar */
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  /* Título de sección */
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold text-center mb-4;
+  }
+
+  /* Subtítulo de sección */
+  .section-subtitle {
+    @apply text-lg md:text-xl text-center text-dark-light mb-12;
+  }
+
+  /* Card base */
+  .card {
+    @apply bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden;
+  }
+
+  /* Input de formulario */
+  .form-input {
+    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200;
+  }
+
+  /* Textarea de formulario */
+  .form-textarea {
+    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 resize-none;
+  }
+
+  /* Label de formulario */
+  .form-label {
+    @apply block text-sm font-medium text-dark mb-2;
+  }
+}
+
+@layer utilities {
+  /* Gradiente de fondo */
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, #004878 0%, #8fc2e9 100%);
+  }
+
+  /* Gradiente de texto */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #004878 0%, #8fc2e9 100%);
+  }
+
+  /* Sombra personalizada */
+  .shadow-primary {
+    box-shadow: 0 10px 40px rgba(0, 72, 120, 0.1);
+  }
+
+  /* Animación de entrada */
+  .animate-on-scroll {
+    @apply opacity-0 translate-y-4 transition-all duration-700 ease-out;
+  }
+
+  .animate-on-scroll.is-visible {
+    @apply opacity-100 translate-y-0;
+  }
+}
+
+/* Estilos para contenido del blog (WordPress) */
+.prose-blog {
+  @apply prose prose-lg max-w-none;
+  @apply prose-headings:font-heading prose-headings:text-dark;
+  @apply prose-p:text-dark prose-p:leading-relaxed;
+  @apply prose-a:text-primary prose-a:no-underline hover:prose-a:underline;
+  @apply prose-strong:text-dark;
+  @apply prose-ul:list-disc prose-ol:list-decimal;
+  @apply prose-li:text-dark;
+  @apply prose-img:rounded-lg prose-img:shadow-md;
+  @apply prose-code:text-primary prose-code:bg-gray-100 prose-code:px-1 prose-code:py-0.5 prose-code:rounded;
+  @apply prose-pre:bg-dark prose-pre:text-white;
+}
+
+/* Utilidades para focus visible (accesibilidad) */
+.focus-visible:focus {
+  @apply outline-none ring-2 ring-primary ring-offset-2;
+}
+
+/* Loading spinner */
+.spinner {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #004878;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Skip to main content (accesibilidad) */
+.skip-to-main {
+  @apply absolute left-0 top-0 bg-primary text-white px-4 py-2 -translate-y-full focus:translate-y-0 transition-transform;
+}
