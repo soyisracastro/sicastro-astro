@@ -5,7 +5,7 @@ import Section from '@/components/ui/Section.astro';
 import BlogCard from '@/components/BlogCard.astro';
 import { calculateReadingTime, stripHtml } from '@/lib/utils';
 import { fetchGraphQL } from '@/lib/wordpress/client';
-import { GET_POSTS, GET_POST_BY_SLUG, GET_RELATED_POSTS } from '@/lib/wordpress/queries';
+import { GET_POSTS, GET_POST_BY_SLUG_WITH_SEO, GET_RELATED_POSTS } from '@/lib/wordpress/queries';
 import type { PostsQueryResponse, PostQueryResponse } from '@/lib/wordpress/types';
 
 // Generate static paths from WordPress posts
@@ -34,7 +34,7 @@ const { slug } = Astro.params;
 let post: any = null;
 
 try {
-  const data = await fetchGraphQL<PostQueryResponse>(GET_POST_BY_SLUG, { slug });
+  const data = await fetchGraphQL<PostQueryResponse>(GET_POST_BY_SLUG_WITH_SEO, { slug });
   if (data.postBy) {
     post = data.postBy;
     console.log('✅ Post completo cargado desde WordPress:', post.title, '- Content:', post.content ? 'Sí' : 'No');

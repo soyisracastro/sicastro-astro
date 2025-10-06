@@ -216,7 +216,7 @@ export const contactInfo = {
 
 export const companyInfo = {
   name: 'S I Castro Consultores',
-  legalName: 'Salvador Isidro Castro Consultores S.C.',
+  legalName: 'S I Castro Consultores S.C.',
   slogan: 'Tu socio estratégico en materia fiscal y contable',
   description: 'Despacho contable con más de 15 años de experiencia brindando servicios de asesoría fiscal, contabilidad, auditoría y consultoría financiera a empresas y personas físicas.',
   founded: 2008,
