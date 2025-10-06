@@ -80,6 +80,44 @@ export const GET_POST_BY_SLUG = `
           }
         }
       }
+    }
+  }
+`;
+
+// Query para obtener un post con datos SEO (requiere WPGraphQL for Yoast SEO)
+export const GET_POST_BY_SLUG_WITH_SEO = `
+  query GetPost($slug: String!) {
+    postBy(slug: $slug) {
+      id
+      title
+      content
+      date
+      excerpt
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+          mediaDetails {
+            width
+            height
+          }
+        }
+      }
+      categories {
+        nodes {
+          id
+          name
+          slug
+        }
+      }
+      author {
+        node {
+          name
+          avatar {
+            url
+          }
+        }
+      }
       seo {
         title
         metaDesc
