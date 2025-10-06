@@ -1,0 +1,271 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import Section from '@/components/ui/Section.astro';
+import Container from '@/components/ui/Container.astro';
+import SectionTitle from '@/components/ui/SectionTitle.astro';
+import StatCard from '@/components/StatCard.astro';
+import Button from '@/components/ui/Button.astro';
+import { stats, teamMembers, companyInfo } from '@/lib/data';
+
+const seo = {
+  title: 'Sobre Nosotros | S I Castro Consultores',
+  description: 'Conoce a S I Castro Consultores, despacho contable con más de 15 años de experiencia en México. Nuestro equipo de profesionales certificados.',
+  url: 'https://sicastro.com/sobre-nosotros',
+};
+
+const values = [
+  {
+    id: 'integrity',
+    icon: '🤝',
+    title: 'Integridad',
+    description: 'Actuamos con honestidad y transparencia en cada servicio que brindamos',
+  },
+  {
+    id: 'excellence',
+    icon: '⭐',
+    title: 'Excelencia',
+    description: 'Buscamos la máxima calidad en cada proyecto y solución que entregamos',
+  },
+  {
+    id: 'commitment',
+    icon: '💪',
+    title: 'Compromiso',
+    description: 'Dedicación total con los objetivos y el éxito de nuestros clientes',
+  },
+  {
+    id: 'innovation',
+    icon: '💡',
+    title: 'Innovación',
+    description: 'Adoptamos tecnología y métodos modernos para mayor eficiencia',
+  },
+];
+---
+
+<PageLayout seo={seo}>
+  <!-- Hero Section -->
+  <Section background="gradient" padding="lg">
+    <Container>
+      <div class="max-w-4xl mx-auto text-center text-white">
+        <h1 class="font-heading text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
+          Sobre {companyInfo.name}
+        </h1>
+        <p class="text-xl md:text-2xl text-white/90 animate-slide-up">
+          Más de {new Date().getFullYear() - companyInfo.founded} años de experiencia al servicio de empresas mexicanas
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- History Section -->
+  <Section background="white">
+    <Container>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="animate-on-scroll">
+          <h2 class="font-heading text-4xl md:text-5xl font-bold text-dark mb-6">
+            Nuestra Historia
+          </h2>
+          <p class="text-lg text-dark-light mb-4 leading-relaxed">
+            Fundados en {companyInfo.founded}, <strong>{companyInfo.name}</strong> nació con el objetivo de ofrecer servicios contables y fiscales de la más alta calidad a empresas y profesionistas en México.
+          </p>
+          <p class="text-lg text-dark-light mb-4 leading-relaxed">
+            A lo largo de estos años, hemos consolidado nuestra posición como uno de los despachos más confiables del país, construyendo relaciones duraderas basadas en la confianza, el profesionalismo y los resultados.
+          </p>
+          <p class="text-lg text-dark-light leading-relaxed">
+            Hoy, nos enorgullece contar con un equipo de más de 20 profesionales certificados que trabajan día a día para ayudar a nuestros clientes a alcanzar sus objetivos financieros y mantener el cumplimiento total de sus obligaciones fiscales.
+          </p>
+        </div>
+        
+        <div class="relative animate-on-scroll">
+          <div class="bg-primary-light rounded-lg p-8 aspect-square flex items-center justify-center">
+            <div class="text-center">
+              <div class="text-7xl mb-6">🏆</div>
+              <p class="font-heading text-5xl font-bold text-primary mb-2">
+                {new Date().getFullYear() - companyInfo.founded}+
+              </p>
+              <p class="text-xl text-dark font-semibold">
+                Años de Experiencia
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Stats Section -->
+  <Section background="background">
+    <Container>
+      <SectionTitle
+        title="Nuestros Logros en Números"
+        subtitle="Resultados que hablan por sí solos"
+      />
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+        {stats.map(stat => (
+          <StatCard stat={stat} />
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Mission & Vision Section -->
+  <Section background="white">
+    <Container>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Mission -->
+        <div class="bg-gradient-primary text-white rounded-lg p-8 md:p-10 animate-on-scroll">
+          <div class="text-5xl mb-6">🎯</div>
+          <h2 class="font-heading text-3xl font-bold mb-4">
+            Nuestra Misión
+          </h2>
+          <p class="text-lg leading-relaxed text-white/90">
+            Brindar servicios de asesoría fiscal, contable y financiera de la más alta calidad, con un enfoque personalizado y orientado a resultados, que permita a nuestros clientes alcanzar sus objetivos de negocio con total cumplimiento normativo y optimización de recursos.
+          </p>
+        </div>
+
+        <!-- Vision -->
+        <div class="bg-secondary text-white rounded-lg p-8 md:p-10 animate-on-scroll">
+          <div class="text-5xl mb-6">👁️</div>
+          <h2 class="font-heading text-3xl font-bold mb-4">
+            Nuestra Visión
+          </h2>
+          <p class="text-lg leading-relaxed text-white/90">
+            Ser el despacho contable líder en México, reconocido por nuestra excelencia en el servicio, innovación en procesos y compromiso con el éxito de nuestros clientes, consolidándonos como su socio estratégico de confianza en materia fiscal y financiera.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Values Section -->
+  <Section background="background">
+    <Container>
+      <SectionTitle
+        title="Nuestros Valores"
+        subtitle="Los principios que guían nuestro trabajo diario"
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {values.map(value => (
+          <div class="bg-white rounded-lg p-6 text-center hover:shadow-lg transition-shadow duration-300 animate-on-scroll">
+            <div class="text-5xl mb-4">{value.icon}</div>
+            <h3 class="font-heading text-xl font-bold text-dark mb-3">
+              {value.title}
+            </h3>
+            <p class="text-dark-light">
+              {value.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Team Section -->
+  <Section background="white">
+    <Container>
+      <SectionTitle
+        title="Nuestro Equipo"
+        subtitle="Conoce a los profesionales que harán la diferencia en tu negocio"
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {teamMembers.map(member => (
+          <div class="text-center animate-on-scroll">
+            <div class="relative mb-4">
+              <div class="w-48 h-48 mx-auto bg-primary-light rounded-full overflow-hidden">
+                {member.image ? (
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    class="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div class="w-full h-full flex items-center justify-center">
+                    <span class="text-6xl text-primary font-bold">
+                      {member.name.split(' ').map(n => n[0]).join('')}
+                    </span>
+                  </div>
+                )}
+              </div>
+            </div>
+            
+            <h3 class="font-heading text-xl font-bold text-dark mb-1">
+              {member.name}
+            </h3>
+            
+            <p class="text-primary font-semibold mb-3">
+              {member.position}
+            </p>
+            
+            <p class="text-sm text-dark-light mb-4">
+              {member.bio}
+            </p>
+
+            {member.email && (
+              <a
+                href={`mailto:${member.email}`}
+                class="inline-flex items-center text-sm text-primary hover:text-primary-dark transition-colors"
+              >
+                <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                Contactar
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Certifications Section -->
+  <Section background="background">
+    <Container>
+      <SectionTitle
+        title="Certificaciones y Reconocimientos"
+        subtitle="Respaldados por las principales instituciones del sector"
+      />
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div class="bg-white rounded-lg p-6 text-center">
+          <div class="text-4xl mb-3">📜</div>
+          <p class="font-semibold text-dark">Colegio de Contadores Públicos</p>
+        </div>
+        <div class="bg-white rounded-lg p-6 text-center">
+          <div class="text-4xl mb-3">🎓</div>
+          <p class="font-semibold text-dark">Certificación Profesional</p>
+        </div>
+        <div class="bg-white rounded-lg p-6 text-center">
+          <div class="text-4xl mb-3">✅</div>
+          <p class="font-semibold text-dark">ISO 9001:2015</p>
+        </div>
+        <div class="bg-white rounded-lg p-6 text-center">
+          <div class="text-4xl mb-3">🏅</div>
+          <p class="font-semibold text-dark">Reconocimiento SAT</p>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- CTA Section -->
+  <Section background="gradient">
+    <Container>
+      <div class="max-w-3xl mx-auto text-center text-white">
+        <h2 class="font-heading text-4xl md:text-5xl font-bold mb-6">
+          Únete a Nuestros Clientes Satisfechos
+        </h2>
+        <p class="text-xl mb-8 text-white/90">
+          Descubre cómo podemos ayudarte a alcanzar tus objetivos financieros
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button href="/contacto" variant="secondary" size="lg">
+            Solicitar Consulta
+          </Button>
+          <Button href="/servicios" variant="outline" size="lg" class="bg-white/10 hover:bg-white hover:text-primary border-white">
+            Ver Servicios
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </Section>
+</PageLayout>

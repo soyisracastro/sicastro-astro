@@ -1,0 +1,76 @@
+---
+import type { FAQItem } from '@/types';
+
+interface Props {
+  item: FAQItem;
+  index: number;
+}
+
+const { item, index } = Astro.props;
+const id = `faq-${item.id}`;
+---
+
+<div class="border-b border-gray-200 last:border-0">
+  <button
+    type="button"
+    class="faq-button w-full py-5 flex justify-between items-center text-left hover:text-primary transition-colors"
+    aria-expanded="false"
+    aria-controls={id}
+  >
+    <span class="font-semibold text-dark pr-8">{item.question}</span>
+    <svg
+      class="faq-icon w-6 h-6 flex-shrink-0 transform transition-transform duration-300"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M19 9l-7 7-7-7"
+      />
+    </svg>
+  </button>
+  <div
+    id={id}
+    class="faq-content overflow-hidden transition-all duration-300 max-h-0"
+  >
+    <div class="pb-5 text-dark-light">
+      {item.answer}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqButtons = document.querySelectorAll('.faq-button');
+    
+    faqButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        const content = document.getElementById(button.getAttribute('aria-controls')!);
+        const icon = button.querySelector('.faq-icon');
+        
+        // Toggle current FAQ
+        button.setAttribute('aria-expanded', String(!expanded));
+        
+        if (content) {
+          if (expanded) {
+            content.style.maxHeight = '0';
+          } else {
+            content.style.maxHeight = content.scrollHeight + 'px';
+          }
+        }
+        
+        if (icon) {
+          if (expanded) {
+            icon.classList.remove('rotate-180');
+          } else {
+            icon.classList.add('rotate-180');
+          }
+        }
+      });
+    });
+  });
+</script>

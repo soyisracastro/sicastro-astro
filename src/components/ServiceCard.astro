@@ -1,0 +1,62 @@
+---
+import Card from './ui/Card.astro';
+import Badge from './ui/Badge.astro';
+import type { Service } from '@/types';
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+
+const categoryColors = {
+  fiscal: 'primary',
+  contable: 'secondary',
+  consultoria: 'info',
+  nomina: 'success',
+} as const;
+---
+
+<Card variant="hover" href={`/servicio/${service.id}`}>
+  <div class="flex flex-col h-full">
+    <!-- Icon -->
+    <div class="flex items-center justify-center w-16 h-16 bg-primary-light rounded-lg mb-4">
+      <span class="text-3xl">{service.icon}</span>
+    </div>
+
+    <!-- Category Badge -->
+    <Badge variant={categoryColors[service.category]} size="sm" class="mb-3 w-fit">
+      {service.category.charAt(0).toUpperCase() + service.category.slice(1)}
+    </Badge>
+
+    <!-- Title -->
+    <h3 class="font-heading text-2xl font-bold text-dark mb-3 group-hover:text-primary transition-colors">
+      {service.title}
+    </h3>
+
+    <!-- Description -->
+    <p class="text-dark-light mb-4 flex-grow">
+      {service.shortDescription}
+    </p>
+
+    <!-- Benefits (max 3) -->
+    <ul class="space-y-2 mb-4">
+      {service.benefits.slice(0, 3).map(benefit => (
+        <li class="flex items-start text-sm text-dark">
+          <svg class="w-5 h-5 text-accent mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          <span>{benefit}</span>
+        </li>
+      ))}
+    </ul>
+
+    <!-- CTA -->
+    <div class="flex items-center text-primary font-medium mt-auto">
+      Ver más detalles
+      <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+      </svg>
+    </div>
+  </div>
+</Card>

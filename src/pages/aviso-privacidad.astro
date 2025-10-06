@@ -1,0 +1,182 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import Section from '@/components/ui/Section.astro';
+import Container from '@/components/ui/Container.astro';
+import { companyInfo } from '@/lib/data';
+
+const seo = {
+  title: 'Aviso de Privacidad | S I Castro Consultores',
+  description: 'Aviso de privacidad conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares.',
+  url: 'https://sicastro.com/aviso-privacidad',
+};
+---
+
+<PageLayout seo={seo}>
+  <Section background="gradient" padding="md">
+    <Container>
+      <div class="max-w-4xl mx-auto text-center text-white">
+        <h1 class="font-heading text-5xl md:text-6xl font-bold mb-6">
+          Aviso de Privacidad
+        </h1>
+        <p class="text-xl text-white/90">
+          Conforme a la LFPDPPP
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+  <Section background="white">
+    <Container size="md">
+      <div class="prose prose-lg max-w-none">
+        <p class="text-sm text-dark-light mb-8">
+          Última actualización: {new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </p>
+
+        <h2>Identidad y Domicilio del Responsable</h2>
+        <p>
+          <strong>{companyInfo.legalName}</strong> (en adelante "{companyInfo.name}"), con domicilio en [Dirección completa], es responsable del tratamiento de sus datos personales conforme a lo establecido en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP).
+        </p>
+
+        <h2>Datos Personales que Recabamos</h2>
+        <p>Para las finalidades señaladas en este aviso de privacidad, podemos recabar sus datos personales de distintas formas:</p>
+        
+        <h3>Datos de Identificación:</h3>
+        <ul>
+          <li>Nombre completo</li>
+          <li>RFC</li>
+          <li>CURP</li>
+          <li>Fecha de nacimiento</li>
+          <li>Nacionalidad</li>
+          <li>Identificación oficial</li>
+        </ul>
+
+        <h3>Datos de Contacto:</h3>
+        <ul>
+          <li>Domicilio</li>
+          <li>Teléfono fijo y móvil</li>
+          <li>Correo electrónico</li>
+        </ul>
+
+        <h3>Datos Laborales:</h3>
+        <ul>
+          <li>Puesto o cargo</li>
+          <li>Domicilio laboral</li>
+          <li>Empresa donde labora</li>
+        </ul>
+
+        <h3>Datos Financieros y Patrimoniales:</h3>
+        <ul>
+          <li>Estados financieros</li>
+          <li>Información bancaria</li>
+          <li>Declaraciones fiscales</li>
+          <li>Facturas y comprobantes fiscales</li>
+          <li>Ingresos y egresos</li>
+        </ul>
+
+        <h2>Finalidades del Tratamiento</h2>
+        <h3>Finalidades Primarias (necesarias):</h3>
+        <ul>
+          <li>Prestación de servicios contables, fiscales y de consultoría</li>
+          <li>Cumplimiento de obligaciones fiscales y legales</li>
+          <li>Elaboración de declaraciones y reportes</li>
+          <li>Atención de requerimientos de autoridades</li>
+          <li>Facturación y cobranza</li>
+          <li>Comunicación sobre el servicio contratado</li>
+        </ul>
+
+        <h3>Finalidades Secundarias (que requieren consentimiento):</h3>
+        <ul>
+          <li>Mercadotecnia, publicidad y prospección comercial</li>
+          <li>Envío de newsletters y boletines informativos</li>
+          <li>Invitaciones a eventos y webinars</li>
+          <li>Estudios de calidad y satisfacción</li>
+        </ul>
+
+        <p>
+          Si no desea que sus datos personales se utilicen para las finalidades secundarias, puede manifestarlo enviando un correo a: contacto@sicastro.com
+        </p>
+
+        <h2>Transferencia de Datos</h2>
+        <p>
+          Sus datos personales pueden ser compartidos con las siguientes personas, empresas u organizaciones:
+        </p>
+        <ul>
+          <li><strong>Autoridades fiscales (SAT, IMSS, INFONAVIT):</strong> Para cumplimiento de obligaciones legales</li>
+          <li><strong>Proveedores de software contable:</strong> Para almacenamiento y procesamiento de información</li>
+          <li><strong>Notarios públicos:</strong> En caso de constitución o modificación de sociedades</li>
+          <li><strong>Instituciones bancarias:</strong> Para gestión de pagos y trámites financieros</li>
+        </ul>
+
+        <p>
+          Estas transferencias son necesarias para la prestación del servicio contratado y el cumplimiento de obligaciones legales.
+        </p>
+
+        <h2>Derechos ARCO</h2>
+        <p>
+          Usted tiene derecho a conocer qué datos personales tenemos de usted, para qué los utilizamos y las condiciones del uso que les damos (Acceso). Asimismo, es su derecho solicitar la corrección de su información personal en caso de que esté desactualizada, sea inexacta o incompleta (Rectificación); que la eliminemos de nuestros registros o bases de datos cuando considere que la misma no está siendo utilizada adecuadamente (Cancelación); así como oponerse al uso de sus datos personales para fines específicos (Oposición).
+        </p>
+
+        <p>
+          Para ejercer sus derechos ARCO, debe enviar una solicitud por escrito a: contacto@sicastro.com, incluyendo:
+        </p>
+        <ul>
+          <li>Nombre completo y domicilio</li>
+          <li>Documentos que acrediten su identidad</li>
+          <li>Descripción clara de los datos sobre los que busca ejercer sus derechos</li>
+          <li>Cualquier elemento que facilite la localización de sus datos</li>
+        </ul>
+
+        <p>
+          Tendremos un plazo máximo de 20 días hábiles para atender su solicitud y le informaremos sobre la procedencia de la misma a través del correo electrónico que nos proporcione.
+        </p>
+
+        <h2>Revocación del Consentimiento</h2>
+        <p>
+          Usted puede revocar el consentimiento que nos ha otorgado para el tratamiento de sus datos personales mediante el mismo procedimiento establecido para ejercer los derechos ARCO.
+        </p>
+
+        <h2>Medidas de Seguridad</h2>
+        <p>
+          {companyInfo.name} ha implementado medidas de seguridad administrativas, técnicas y físicas para proteger sus datos personales contra daño, pérdida, alteración, destrucción o uso no autorizado.
+        </p>
+
+        <h2>Uso de Cookies y Tecnologías Similares</h2>
+        <p>
+          Le informamos que en nuestra página de Internet utilizamos cookies, web beacons y otras tecnologías para recabar información sobre su navegación con la finalidad de:
+        </p>
+        <ul>
+          <li>Mejorar la experiencia del usuario</li>
+          <li>Análisis estadístico de uso del sitio</li>
+          <li>Recordar preferencias de navegación</li>
+        </ul>
+
+        <p>
+          Estas tecnologías pueden ser deshabilitadas desde su navegador. Para conocer cómo hacerlo, consulte las instrucciones de su navegador específico.
+        </p>
+
+        <h2>Modificaciones al Aviso de Privacidad</h2>
+        <p>
+          Nos reservamos el derecho de efectuar modificaciones o actualizaciones al presente aviso de privacidad en cualquier momento. Estas modificaciones estarán disponibles en nuestro sitio web: www.sicastro.com/aviso-privacidad
+        </p>
+
+        <h2>Consentimiento</h2>
+        <p>
+          Al proporcionar sus datos personales a {companyInfo.name} ya sea de forma directa, a través de nuestro sitio web, o por cualquier otro medio, usted consiente el tratamiento de los mismos conforme a los términos del presente aviso de privacidad.
+        </p>
+
+        <div class="bg-accent/20 border-l-4 border-accent p-6 mt-12">
+          <h3 class="font-heading text-xl font-bold text-dark mb-3">
+            ¿Tiene Dudas?
+          </h3>
+          <p class="text-dark-light mb-4">
+            Si tiene alguna duda sobre este aviso de privacidad o sobre el tratamiento de sus datos personales, puede contactarnos:
+          </p>
+          <p class="text-dark">
+            <strong>Email:</strong> contacto@sicastro.com<br/>
+            <strong>Teléfono:</strong> 555-123-4567
+          </p>
+        </div>
+      </div>
+    </Container>
+  </Section>
+</PageLayout>

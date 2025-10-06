@@ -1,0 +1,173 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import Section from '@/components/ui/Section.astro';
+import Container from '@/components/ui/Container.astro';
+import BlogCard from '@/components/BlogCard.astro';
+import Badge from '@/components/ui/Badge.astro';
+import Button from '@/components/ui/Button.astro';
+import { fetchGraphQL } from '@/lib/wordpress/client';
+import { GET_POSTS, GET_CATEGORIES } from '@/lib/wordpress/queries';
+import type { PostsQueryResponse, CategoriesQueryResponse } from '@/lib/wordpress/types';
+
+// Try to fetch from WordPress, fallback to mock data
+let posts: any[] = [];
+let categories: any[] = [];
+let isWordPressConnected = false;
+
+try {
+  const postsData = await fetchGraphQL<PostsQueryResponse>(GET_POSTS, { first: 12 });
+  const categoriesData = await fetchGraphQL<CategoriesQueryResponse>(GET_CATEGORIES);
+  
+  posts = postsData.posts.nodes;
+  categories = categoriesData.categories.nodes;
+  isWordPressConnected = true;
+  
+  console.log('✅ WordPress connected successfully. Posts loaded:', posts.length);
+} catch (error) {
+  console.warn('⚠️ WordPress not available, using mock data:', error);
+  
+  // Fallback to mock data
+  posts = [
+  {
+    id: '1',
+    title: 'Nuevas disposiciones fiscales para 2025',
+    slug: 'nuevas-disposiciones-fiscales-2025',
+    excerpt: 'Conoce los cambios más importantes en materia fiscal que entrarán en vigor el próximo año.',
+    date: '2024-12-15T10:00:00',
+    featuredImage: { node: { sourceUrl: '/images/blog/fiscal-2025.jpg', altText: 'Fiscal 2025' } },
+    categories: { nodes: [{ name: 'Noticias Fiscales', slug: 'noticias-fiscales' }] },
+    author: { node: { name: 'C.P. Salvador Castro', avatar: { url: '' } } },
+  },
+  {
+    id: '2',
+    title: 'Cómo organizar tus facturas electrónicas',
+    slug: 'organizar-facturas-electronicas',
+    excerpt: 'Guía práctica para mantener tu contabilidad en orden y facilitar el cumplimiento fiscal.',
+    date: '2024-12-10T10:00:00',
+    featuredImage: { node: { sourceUrl: '/images/blog/facturas.jpg', altText: 'Facturas' } },
+    categories: { nodes: [{ name: 'Tips Contables', slug: 'tips-contables' }] },
+    author: { node: { name: 'C.P. María Ruiz', avatar: { url: '' } } },
+  },
+  {
+    id: '3',
+    title: 'Obligaciones fiscales del primer trimestre',
+    slug: 'obligaciones-primer-trimestre',
+    excerpt: 'Calendario completo de las obligaciones fiscales del primer trimestre del año.',
+    date: '2024-12-05T10:00:00',
+    featuredImage: { node: { sourceUrl: '/images/blog/calendario.jpg', altText: 'Calendario' } },
+    categories: { nodes: [{ name: 'Guías Prácticas', slug: 'guias-practicas' }] },
+    author: { node: { name: 'L.C. Roberto Mendoza', avatar: { url: '' } } },
+  },
+  ];
+
+  categories = [
+    { name: 'Noticias Fiscales', slug: 'noticias-fiscales', count: 15 },
+    { name: 'Tips Contables', slug: 'tips-contables', count: 12 },
+    { name: 'Guías Prácticas', slug: 'guias-practicas', count: 8 },
+    { name: 'Actualizaciones Legales', slug: 'actualizaciones-legales', count: 6 },
+  ];
+}
+
+const seo = {
+  title: 'Blog de Noticias Fiscales y Contables | S I Castro Consultores',
+  description: 'Artículos, noticias y guías sobre temas fiscales, contables y financieros.',
+  url: 'https://sicastro.com/blog',
+};
+---
+
+<PageLayout seo={seo}>
+  <Section background="gradient" padding="md">
+    <Container>
+      <div class="max-w-4xl mx-auto text-center text-white">
+        <h1 class="font-heading text-5xl md:text-6xl font-bold mb-6">Blog</h1>
+        <p class="text-xl md:text-2xl text-white/90">
+          Mantente informado con las últimas noticias fiscales y contables
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+  <Section background="background">
+    <Container>
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <div class="lg:col-span-3">
+          {!isWordPressConnected && (
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-8">
+              <div class="flex">
+                <svg class="w-6 h-6 text-yellow-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                </svg>
+                <div>
+                  <h3 class="text-sm font-medium text-yellow-800 mb-1">WordPress No Conectado</h3>
+                  <p class="text-sm text-yellow-700">
+                    Mostrando datos de ejemplo. Verifica tu configuración en el archivo .env:
+                  </p>
+                  <code class="text-xs bg-yellow-100 px-2 py-1 rounded mt-2 block">
+                    WORDPRESS_GRAPHQL_URL=https://blog.todoconta.com/graphql
+                  </code>
+                </div>
+              </div>
+            </div>
+          )}
+          
+          {isWordPressConnected && (
+            <div class="bg-green-50 border-l-4 border-green-400 p-4 mb-8">
+              <div class="flex">
+                <svg class="w-6 h-6 text-green-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <div>
+                  <h3 class="text-sm font-medium text-green-800">WordPress Conectado</h3>
+                  <p class="text-sm text-green-700">
+                    Mostrando {posts.length} posts desde WordPress
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {posts.map(post => (
+              <BlogCard
+                title={post.title}
+                excerpt={post.excerpt}
+                date={post.date}
+                slug={post.slug}
+                category={post.categories.nodes[0]?.name}
+                image={post.featuredImage?.node.sourceUrl}
+                author={post.author.node.name}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div class="lg:col-span-1">
+          <div class="sticky top-24 space-y-6">
+            <div class="bg-white rounded-lg p-6 shadow-md">
+              <h3 class="font-heading text-xl font-bold text-dark mb-4">Categorías</h3>
+              <ul class="space-y-2">
+                {categories.map(cat => (
+                  <li>
+                    <a href={`/blog?categoria=${cat.slug}`} class="flex justify-between py-2 px-3 rounded hover:bg-primary-light">
+                      <span class="text-dark">{cat.name}</span>
+                      <Badge variant="default" size="sm">{cat.count}</Badge>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="bg-gradient-primary text-white rounded-lg p-6">
+              <h3 class="font-heading text-xl font-bold mb-3">Newsletter</h3>
+              <p class="text-sm mb-4">Recibe noticias fiscales en tu correo</p>
+              <form action="/newsletter" method="POST" class="space-y-3">
+                <input type="email" name="email" placeholder="tu@email.com" required class="w-full px-4 py-2 rounded-lg text-dark" />
+                <Button type="submit" variant="secondary" class="w-full">Suscribirse</Button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+</PageLayout>

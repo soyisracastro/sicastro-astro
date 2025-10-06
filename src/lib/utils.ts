@@ -5,25 +5,43 @@
 /**
  * Formatea una fecha en formato local español
  */
-export function formatDate(date: string | Date): string {
-  const d = typeof date === 'string' ? new Date(date) : date;
-  return d.toLocaleDateString('es-MX', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+export function formatDate(date: string | Date | undefined | null): string {
+  if (!date) return 'Fecha no disponible';
+  
+  try {
+    const d = typeof date === 'string' ? new Date(date) : date;
+    if (isNaN(d.getTime())) return 'Fecha inválida';
+    
+    return d.toLocaleDateString('es-MX', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  } catch (error) {
+    console.error('Error formatting date:', error);
+    return 'Fecha inválida';
+  }
 }
 
 /**
  * Formatea una fecha en formato corto
  */
-export function formatDateShort(date: string | Date): string {
-  const d = typeof date === 'string' ? new Date(date) : date;
-  return d.toLocaleDateString('es-MX', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  });
+export function formatDateShort(date: string | Date | undefined | null): string {
+  if (!date) return 'N/A';
+  
+  try {
+    const d = typeof date === 'string' ? new Date(date) : date;
+    if (isNaN(d.getTime())) return 'N/A';
+    
+    return d.toLocaleDateString('es-MX', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    });
+  } catch (error) {
+    console.error('Error formatting date:', error);
+    return 'N/A';
+  }
 }
 
 /**
@@ -63,14 +81,16 @@ export function truncate(text: string, length: number = 100): string {
 /**
  * Extrae el texto plano de HTML
  */
-export function stripHtml(html: string): string {
+export function stripHtml(html: string | undefined | null): string {
+  if (!html) return '';
   return html.replace(/<[^>]*>/g, '');
 }
 
 /**
  * Calcula el tiempo de lectura estimado
  */
-export function calculateReadingTime(text: string): number {
+export function calculateReadingTime(text: string | undefined | null): number {
+  if (!text) return 1;
   const wordsPerMinute = 200;
   const words = text.trim().split(/\s+/).length;
   return Math.ceil(words / wordsPerMinute);

@@ -1,0 +1,23 @@
+---
+import type { Stat } from '@/types';
+
+interface Props {
+  stat: Stat;
+}
+
+const { stat } = Astro.props;
+---
+
+<div class="text-center animate-on-scroll">
+  {stat.icon && (
+    <div class="text-5xl mb-4">
+      {stat.icon}
+    </div>
+  )}
+  <div class="text-4xl md:text-5xl font-bold text-primary mb-2">
+    {stat.prefix}{stat.value}{stat.suffix}
+  </div>
+  <div class="text-lg text-dark-light">
+    {stat.label}
+  </div>
+</div>

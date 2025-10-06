@@ -1,16 +1,266 @@
 ---
+import PageLayout from '@/layouts/PageLayout.astro';
+import Section from '@/components/ui/Section.astro';
+import Container from '@/components/ui/Container.astro';
+import Button from '@/components/ui/Button.astro';
+import SectionTitle from '@/components/ui/SectionTitle.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import StatCard from '@/components/StatCard.astro';
+import TestimonialCard from '@/components/TestimonialCard.astro';
+import BlogCard from '@/components/BlogCard.astro';
+import FAQItem from '@/components/FAQItem.astro';
+import { defaultSEO, stats, testimonials, faqItems, companyInfo } from '@/lib/data';
+import { getFeaturedServices } from '@/lib/services';
 
+const featuredServices = getFeaturedServices();
+
+// TODO: Replace with actual WordPress data when available
+const mockBlogPosts = [
+  {
+    title: 'Nuevas disposiciones fiscales para 2025',
+    excerpt: 'Conoce los cambios más importantes en materia fiscal que entrarán en vigor el próximo año y cómo afectarán a tu empresa.',
+    date: '2024-12-15',
+    slug: 'nuevas-disposiciones-fiscales-2025',
+    category: 'Noticias Fiscales',
+    image: '/images/blog/fiscal-2025.jpg',
+    author: 'C.P. Salvador Castro',
+  },
+  {
+    title: 'Cómo organizar tus facturas electrónicas',
+    excerpt: 'Guía práctica para mantener tu contabilidad en orden y facilitar el cumplimiento de tus obligaciones fiscales.',
+    date: '2024-12-10',
+    slug: 'organizar-facturas-electronicas',
+    category: 'Tips Contables',
+    image: '/images/blog/facturas.jpg',
+    author: 'C.P. María Ruiz',
+  },
+  {
+    title: 'Obligaciones fiscales del primer trimestre',
+    excerpt: 'Calendario completo de las obligaciones fiscales que debes cumplir en los primeros tres meses del año.',
+    date: '2024-12-05',
+    slug: 'obligaciones-primer-trimestre',
+    category: 'Guías Prácticas',
+    image: '/images/blog/calendario.jpg',
+    author: 'L.C. Roberto Mendoza',
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<PageLayout seo={defaultSEO}>
+  <!-- Hero Section -->
+  <Section padding="none" class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-primary opacity-90"></div>
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10"></div>
+    </div>
+    
+    <Container class="relative z-10 py-20 md:py-32">
+      <div class="max-w-4xl mx-auto text-center text-white">
+        <h1 class="font-heading text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in">
+          Tu Socio Estratégico en Materia Fiscal y Contable
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 text-white/90 animate-slide-up">
+          Más de 15 años de experiencia brindando soluciones integrales a empresas en México
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up">
+          <Button href="/servicios" size="lg" variant="secondary">
+            Ver Servicios
+          </Button>
+          <Button href="/contacto" size="lg" variant="outline" class="bg-white/10 hover:bg-white hover:text-primary border-white">
+            Solicitar Consulta
+          </Button>
+        </div>
+      </div>
+    </Container>
+
+    <!-- Wave divider -->
+    <div class="absolute bottom-0 left-0 right-0">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-16 fill-background">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+      </svg>
+    </div>
+  </Section>
+
+  <!-- Stats Section -->
+  <Section background="background">
+    <Container>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+        {stats.map(stat => (
+          <StatCard stat={stat} />
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Featured Services Section -->
+  <Section background="white">
+    <Container>
+      <SectionTitle
+        title="Nuestros Servicios"
+        subtitle="Soluciones integrales diseñadas para el éxito de tu empresa"
+      />
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        {featuredServices.map(service => (
+          <ServiceCard service={service} />
+        ))}
+      </div>
+
+      <div class="text-center">
+        <Button href="/servicios" variant="primary" size="lg">
+          Ver Todos los Servicios
+        </Button>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- About Preview Section -->
+  <Section background="gradient">
+    <Container>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="animate-on-scroll">
+          <h2 class="font-heading text-4xl md:text-5xl font-bold mb-6">
+            {companyInfo.name}
+          </h2>
+          <p class="text-lg mb-6 text-white/90">
+            {companyInfo.description}
+          </p>
+          <p class="text-lg mb-6 text-white/90">
+            Fundados en {companyInfo.founded}, nos hemos consolidado como uno de los despachos contables más confiables de México, ofreciendo servicios de alta calidad respaldados por un equipo de profesionales certificados.
+          </p>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start">
+              <svg class="w-6 h-6 mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span>Equipo de profesionales certificados</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-6 h-6 mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span>Tecnología de vanguardia</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-6 h-6 mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span>Atención personalizada</span>
+            </li>
+          </ul>
+          <Button href="/sobre-nosotros" variant="secondary" size="lg">
+            Conoce Más Sobre Nosotros
+          </Button>
+        </div>
+        
+        <div class="relative animate-on-scroll">
+          <div class="aspect-square rounded-lg bg-white/10 backdrop-blur-sm p-8">
+            <div class="h-full flex items-center justify-center">
+              <div class="text-center">
+                <div class="text-6xl mb-4">🏆</div>
+                <p class="text-2xl font-bold mb-2">+500</p>
+                <p class="text-lg">Clientes Satisfechos</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Testimonials Section -->
+  <Section background="background">
+    <Container>
+      <SectionTitle
+        title="Lo Que Dicen Nuestros Clientes"
+        subtitle="La confianza de nuestros clientes es nuestro mejor respaldo"
+      />
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {testimonials.map(testimonial => (
+          <TestimonialCard testimonial={testimonial} />
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Blog Preview Section -->
+  <Section background="white">
+    <Container>
+      <SectionTitle
+        title="Últimas Noticias"
+        subtitle="Mantente informado sobre las novedades fiscales y contables"
+      />
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        {mockBlogPosts.map(post => (
+          <BlogCard {...post} />
+        ))}
+      </div>
+
+      <div class="text-center">
+        <Button href="/blog" variant="primary" size="lg">
+          Ver Todos los Artículos
+        </Button>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- FAQ Section -->
+  <Section background="background">
+    <Container>
+      <SectionTitle
+        title="Preguntas Frecuentes"
+        subtitle="Resolvemos tus dudas sobre nuestros servicios"
+      />
+      
+      <div class="max-w-3xl mx-auto">
+        <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+          {faqItems.map((item, index) => (
+            <FAQItem item={item} index={index} />
+          ))}
+        </div>
+      </div>
+
+      <div class="text-center mt-12">
+        <p class="text-lg text-dark-light mb-4">
+          ¿Tienes más preguntas? Estamos aquí para ayudarte
+        </p>
+        <Button href="/contacto" variant="primary" size="lg">
+          Contáctanos
+        </Button>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Newsletter CTA Section -->
+  <Section background="gradient">
+    <Container>
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="font-heading text-4xl md:text-5xl font-bold mb-6">
+          Suscríbete a Nuestro Newsletter
+        </h2>
+        <p class="text-xl mb-8 text-white/90">
+          Recibe las últimas actualizaciones fiscales, tips contables y noticias relevantes directamente en tu correo
+        </p>
+        
+        <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto" action="/newsletter" method="POST">
+          <input
+            type="email"
+            name="email"
+            placeholder="tu@email.com"
+            required
+            class="flex-1 px-6 py-4 rounded-lg text-dark focus:outline-none focus:ring-2 focus:ring-white"
+          />
+          <Button type="submit" variant="secondary" size="lg" class="whitespace-nowrap">
+            Suscribirse
+          </Button>
+        </form>
+        
+        <p class="text-sm mt-4 text-white/70">
+          Al suscribirte, aceptas nuestra <a href="/aviso-privacidad" class="underline hover:text-white">Política de Privacidad</a>
+        </p>
+      </div>
+    </Container>
+  </Section>
+</PageLayout>

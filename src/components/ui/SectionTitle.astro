@@ -1,0 +1,32 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  align?: 'left' | 'center' | 'right';
+  class?: string;
+}
+
+const {
+  title,
+  subtitle,
+  align = 'center',
+  class: className = '',
+} = Astro.props;
+
+const alignClasses = {
+  left: 'text-left',
+  center: 'text-center',
+  right: 'text-right',
+};
+---
+
+<div class={`mb-12 ${alignClasses[align]} ${className}`}>
+  <h2 class="font-heading text-4xl md:text-5xl font-bold text-dark mb-4 animate-on-scroll">
+    {title}
+  </h2>
+  {subtitle && (
+    <p class="text-lg md:text-xl text-dark-light max-w-3xl mx-auto animate-on-scroll">
+      {subtitle}
+    </p>
+  )}
+</div>

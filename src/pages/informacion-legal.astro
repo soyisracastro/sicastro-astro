@@ -1,0 +1,115 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import Section from '@/components/ui/Section.astro';
+import Container from '@/components/ui/Container.astro';
+import { companyInfo } from '@/lib/data';
+
+const seo = {
+  title: 'Información Legal | S I Castro Consultores',
+  description: 'Términos y condiciones de uso del sitio web de S I Castro Consultores.',
+  url: 'https://sicastro.com/informacion-legal',
+};
+---
+
+<PageLayout seo={seo}>
+  <Section background="gradient" padding="md">
+    <Container>
+      <div class="max-w-4xl mx-auto text-center text-white">
+        <h1 class="font-heading text-5xl md:text-6xl font-bold mb-6">
+          Información Legal
+        </h1>
+        <p class="text-xl text-white/90">
+          Términos y Condiciones de Uso
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+  <Section background="white">
+    <Container size="md">
+      <div class="prose prose-lg max-w-none">
+        <p class="text-sm text-dark-light mb-8">
+          Última actualización: {new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </p>
+
+        <h2>1. Identificación del Prestador de Servicios</h2>
+        <p>
+          <strong>{companyInfo.legalName}</strong><br/>
+          RFC: {companyInfo.rfc}<br/>
+          Domicilio: [Dirección completa del despacho]<br/>
+          Correo electrónico: contacto@sicastro.com
+        </p>
+
+        <h2>2. Objeto</h2>
+        <p>
+          El presente sitio web tiene como finalidad proporcionar información sobre los servicios profesionales de asesoría fiscal, contable y financiera que ofrece {companyInfo.name}, así como contenido educativo y de interés general relacionado con dichas materias.
+        </p>
+
+        <h2>3. Condiciones de Uso</h2>
+        <h3>3.1. Acceso al Sitio</h3>
+        <p>
+          El acceso y navegación en este sitio web implica la aceptación expresa y sin reservas de todos los términos y condiciones aquí establecidos. El usuario se compromete a hacer un uso adecuado de los contenidos y servicios ofrecidos.
+        </p>
+
+        <h3>3.2. Uso Permitido</h3>
+        <p>El usuario se compromete a utilizar el sitio web de conformidad con la ley, los presentes términos y condiciones, y cualquier otro aviso o instrucciones puestos en su conocimiento. Queda prohibido:</p>
+        <ul>
+          <li>Realizar actividades ilícitas o que atenten contra la moral y las buenas costumbres</li>
+          <li>Difundir contenidos que resulten difamatorios, injuriosos o contrarios al honor</li>
+          <li>Utilizar el sitio para transmitir virus informáticos o cualquier código malicioso</li>
+          <li>Intentar acceder a áreas restringidas del sitio web</li>
+          <li>Reproducir, copiar o distribuir contenidos sin autorización previa</li>
+        </ul>
+
+        <h2>4. Propiedad Intelectual</h2>
+        <p>
+          Todos los contenidos del sitio web, incluyendo pero sin limitarse a textos, gráficos, logotipos, iconos, imágenes, clips de audio y video, y software, son propiedad de {companyInfo.name} o de sus proveedores de contenido y están protegidos por las leyes mexicanas e internacionales de propiedad intelectual.
+        </p>
+
+        <h2>5. Responsabilidad</h2>
+        <h3>5.1. Contenido del Sitio</h3>
+        <p>
+          {companyInfo.name} se esfuerza por mantener la información del sitio web actualizada y precisa. Sin embargo, no garantiza que la información sea completamente exacta, completa o actual. La información proporcionada es de carácter general y no constituye asesoría profesional específica.
+        </p>
+
+        <h3>5.2. Enlaces Externos</h3>
+        <p>
+          El sitio web puede contener enlaces a sitios de terceros. {companyInfo.name} no se responsabiliza por el contenido de dichos sitios ni por las prácticas de privacidad de los mismos.
+        </p>
+
+        <h2>6. Servicios Profesionales</h2>
+        <p>
+          La información contenida en este sitio web no constituye una oferta de servicios ni establece una relación contractual. Cualquier servicio profesional requerirá la celebración de un contrato específico entre el cliente y {companyInfo.name}.
+        </p>
+
+        <h2>7. Limitación de Responsabilidad</h2>
+        <p>
+          En ningún caso {companyInfo.name} será responsable de daños directos, indirectos, incidentales o consecuentes derivados del uso o imposibilidad de uso del sitio web, incluso si se ha advertido de la posibilidad de tales daños.
+        </p>
+
+        <h2>8. Modificaciones</h2>
+        <p>
+          {companyInfo.name} se reserva el derecho de modificar estos términos y condiciones en cualquier momento. Los cambios entrarán en vigor inmediatamente después de su publicación en el sitio web.
+        </p>
+
+        <h2>9. Ley Aplicable y Jurisdicción</h2>
+        <p>
+          Estos términos y condiciones se regirán e interpretarán de conformidad con las leyes de los Estados Unidos Mexicanos. Para cualquier controversia derivada de estos términos, las partes se someten a la jurisdicción de los tribunales competentes de la Ciudad de México, renunciando a cualquier otro fuero que pudiera corresponderles.
+        </p>
+
+        <h2>10. Contacto</h2>
+        <p>
+          Para cualquier duda o aclaración sobre estos términos y condiciones, puede contactarnos a través de:<br/>
+          Email: contacto@sicastro.com<br/>
+          Teléfono: 555-123-4567
+        </p>
+
+        <div class="bg-primary-light rounded-lg p-6 mt-12">
+          <p class="text-center text-dark">
+            Al utilizar este sitio web, usted acepta estos términos y condiciones en su totalidad.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </Section>
+</PageLayout>

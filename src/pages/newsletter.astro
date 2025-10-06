@@ -1,0 +1,183 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import Section from '@/components/ui/Section.astro';
+import Container from '@/components/ui/Container.astro';
+import Button from '@/components/ui/Button.astro';
+
+const seo = {
+  title: 'Newsletter | S I Castro Consultores',
+  description: 'Suscríbete a nuestro newsletter y recibe las últimas actualizaciones fiscales, tips contables y noticias del sector.',
+  url: 'https://sicastro.com/newsletter',
+};
+
+const benefits = [
+  {
+    icon: '📧',
+    title: 'Noticias Fiscales',
+    description: 'Mantente al día con los cambios en legislación fiscal mexicana',
+  },
+  {
+    icon: '💡',
+    title: 'Tips Prácticos',
+    description: 'Consejos útiles para optimizar tu contabilidad y finanzas',
+  },
+  {
+    icon: '📅',
+    title: 'Calendario Fiscal',
+    description: 'Recordatorios de fechas importantes y obligaciones',
+  },
+  {
+    icon: '🎓',
+    title: 'Guías Exclusivas',
+    description: 'Contenido premium solo para suscriptores',
+  },
+];
+---
+
+<PageLayout seo={seo}>
+  <Section background="gradient" padding="lg">
+    <Container>
+      <div class="max-w-4xl mx-auto text-center text-white">
+        <h1 class="font-heading text-5xl md:text-6xl font-bold mb-6">
+          Newsletter
+        </h1>
+        <p class="text-xl md:text-2xl text-white/90">
+          Mantente informado con las últimas novedades del sector
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+  <Section background="white">
+    <Container>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="font-heading text-4xl font-bold text-dark mb-6">
+            ¿Qué Recibirás?
+          </h2>
+          <div class="space-y-6">
+            {benefits.map(benefit => (
+              <div class="flex items-start">
+                <div class="text-4xl mr-4">{benefit.icon}</div>
+                <div>
+                  <h3 class="font-semibold text-xl text-dark mb-2">{benefit.title}</h3>
+                  <p class="text-dark-light">{benefit.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="bg-background rounded-lg p-8 shadow-lg">
+          <h2 class="font-heading text-3xl font-bold text-dark mb-6">
+            Suscríbete Ahora
+          </h2>
+          
+          <form class="space-y-6" method="POST" action="/api/newsletter">
+            <div>
+              <label for="name" class="form-label">Nombre</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="form-input"
+                placeholder="Juan Pérez"
+              />
+            </div>
+
+            <div>
+              <label for="email" class="form-label">
+                Correo Electrónico <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="form-input"
+                placeholder="juan@empresa.com"
+              />
+            </div>
+
+            <div class="flex items-start">
+              <input
+                type="checkbox"
+                id="privacy"
+                name="privacy"
+                required
+                class="mt-1 mr-3"
+              />
+              <label for="privacy" class="text-sm text-dark-light">
+                Acepto el <a href="/aviso-privacidad" class="text-primary hover:underline">Aviso de Privacidad</a> y autorizo recibir comunicaciones
+              </label>
+            </div>
+
+            <Button type="submit" variant="primary" size="lg" class="w-full">
+              Suscribirme al Newsletter
+            </Button>
+          </form>
+
+          <p class="text-xs text-gray-500 mt-4 text-center">
+            Puedes cancelar tu suscripción en cualquier momento
+          </p>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <Section background="background">
+    <Container>
+      <div class="max-w-3xl mx-auto">
+        <h2 class="font-heading text-3xl font-bold text-dark mb-6 text-center">
+          Ejemplo de Contenido
+        </h2>
+        <div class="bg-white rounded-lg shadow-md p-8 border-4 border-dashed border-gray-300">
+          <div class="flex items-center justify-between mb-4 pb-4 border-b">
+            <div class="flex items-center space-x-3">
+              <div class="w-12 h-12 bg-primary rounded flex items-center justify-center text-white font-bold text-xl">
+                SC
+              </div>
+              <div>
+                <p class="font-bold text-dark">S I Castro Consultores</p>
+                <p class="text-sm text-dark-light">Newsletter Mensual</p>
+              </div>
+            </div>
+            <span class="text-sm text-dark-light">Enero 2025</span>
+          </div>
+
+          <h3 class="font-heading text-2xl font-bold text-dark mb-4">
+            📰 Noticias del Mes
+          </h3>
+          <ul class="space-y-2 mb-6">
+            <li class="flex items-start">
+              <span class="text-primary mr-2">•</span>
+              <span class="text-dark-light">Nuevas disposiciones fiscales del SAT</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary mr-2">•</span>
+              <span class="text-dark-light">Cambios en la presentación de declaraciones</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary mr-2">•</span>
+              <span class="text-dark-light">Estímulos fiscales disponibles</span>
+            </li>
+          </ul>
+
+          <h3 class="font-heading text-2xl font-bold text-dark mb-4">
+            💡 Tip del Mes
+          </h3>
+          <p class="text-dark-light mb-6">
+            Organiza tus facturas por mes y categoría para facilitar tu declaración anual...
+          </p>
+
+          <div class="bg-primary-light rounded-lg p-4 text-center">
+            <p class="text-sm text-primary font-semibold">
+              ¿Tienes dudas? Contáctanos para una asesoría personalizada
+            </p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+</PageLayout>
