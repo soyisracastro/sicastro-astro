@@ -115,3 +115,45 @@
   @apply prose-pre:bg-text-primary prose-pre:text-white prose-pre:rounded-lg;
   @apply prose-blockquote:border-l-primary prose-blockquote:text-text-secondary prose-blockquote:italic;
 }
+
+/* Estilos mejorados para contenido del blog - Mayor legibilidad */
+.prose-blog-enhanced {
+  @apply prose prose-lg max-w-none;
+  
+  /* Headings */
+  @apply prose-headings:font-sans prose-headings:text-text-primary prose-headings:font-bold;
+  @apply prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6;
+  @apply prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-4;
+  @apply prose-h4:text-xl prose-h4:mt-8 prose-h4:mb-3;
+  
+  /* Paragraphs - Tamaño aumentado para mejor legibilidad */
+  @apply prose-p:text-text-primary prose-p:text-lg prose-p:leading-relaxed prose-p:mb-6;
+  
+  /* Links */
+  @apply prose-a:text-primary prose-a:no-underline prose-a:font-medium hover:prose-a:underline hover:prose-a:text-primary-dark;
+  
+  /* Strong and emphasis */
+  @apply prose-strong:text-text-primary prose-strong:font-semibold;
+  @apply prose-em:text-text-primary;
+  
+  /* Lists - Tamaño aumentado */
+  @apply prose-ul:list-disc prose-ul:my-6;
+  @apply prose-ol:list-decimal prose-ol:my-6;
+  @apply prose-li:text-text-primary prose-li:text-lg prose-li:leading-relaxed prose-li:mb-2;
+  
+  /* Images */
+  @apply prose-img:rounded-lg prose-img:my-8;
+  
+  /* Code */
+  @apply prose-code:text-primary prose-code:bg-background prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-base prose-code:font-normal;
+  @apply prose-pre:bg-text-primary prose-pre:text-white prose-pre:rounded-lg prose-pre:p-6 prose-pre:my-8;
+  
+  /* Blockquotes */
+  @apply prose-blockquote:border-l-4 prose-blockquote:border-l-border prose-blockquote:pl-6 prose-blockquote:my-8;
+  @apply prose-blockquote:text-text-secondary prose-blockquote:text-lg prose-blockquote:italic;
+  
+  /* Tables */
+  @apply prose-table:border-collapse prose-table:w-full;
+  @apply prose-th:border prose-th:border-border prose-th:bg-background prose-th:p-3 prose-th:text-left prose-th:font-semibold;
+  @apply prose-td:border prose-td:border-border prose-td:p-3;
+}

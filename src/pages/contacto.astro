@@ -192,7 +192,7 @@ const seo = {
                 </svg>
                 <div>
                   <p class="text-sm text-text-tertiary mb-1">WhatsApp</p>
-                  <p class="font-semibold text-text-primary">{contactInfo.phone}</p>
+                  <p class="font-semibold text-text-primary">{contactInfo.whatsapp}</p>
                 </div>
               </a>
 
@@ -206,7 +206,6 @@ const seo = {
                   <p class="text-sm text-text-tertiary mb-1">Dirección</p>
                   <p class="font-semibold text-text-primary leading-relaxed">
                     {contactInfo.address.street}<br/>
-                    {contactInfo.address.colony}<br/>
                     {contactInfo.address.city}, {contactInfo.address.state}<br/>
                     C.P. {contactInfo.address.zipCode}
                   </p>
@@ -232,19 +231,10 @@ const seo = {
               </div>
               <div class="flex items-start">
                 <svg class="w-5 h-5 mr-2 flex-shrink-0 mt-0.5 text-text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-                <div>
-                  <p class="font-semibold text-text-primary">Sábado</p>
-                  <p class="text-sm">9:00 AM - 2:00 PM</p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <svg class="w-5 h-5 mr-2 flex-shrink-0 mt-0.5 text-text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                 </svg>
                 <div>
-                  <p class="font-semibold text-text-primary">Domingo</p>
+                  <p class="font-semibold text-text-primary">Fin de semana</p>
                   <p class="text-sm">Cerrado</p>
                 </div>
               </div>
@@ -252,7 +242,7 @@ const seo = {
           </div>
 
           <!-- Why Contact Us -->
-          <div class="bg-background border border-border rounded-lg p-6">
+          <div class="bg-white border border-border rounded-lg p-6">
             <h3 class="text-xl font-bold text-text-primary mb-4">
               ¿Por Qué Contactarnos?
             </h3>

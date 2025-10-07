@@ -3,6 +3,7 @@ import BlogLayout from '@/layouts/BlogLayout.astro';
 import Container from '@/components/ui/Container.astro';
 import Section from '@/components/ui/Section.astro';
 import BlogCard from '@/components/BlogCard.astro';
+import Button from '@/components/ui/Button.astro';
 import { calculateReadingTime, stripHtml } from '@/lib/utils';
 import { fetchGraphQL } from '@/lib/wordpress/client';
 import { GET_POSTS, GET_POST_BY_SLUG_WITH_SEO, GET_RELATED_POSTS } from '@/lib/wordpress/queries';
@@ -172,7 +173,7 @@ if (relatedPosts.length === 0) {
   readingTime={readingTime}
 >
   {!isWordPressConnected && (
-    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-8">
+    <div class="bg-yellow-50 border border-yellow-200 rounded-md p-4 mb-8">
       <p class="text-sm text-yellow-800">
         <strong>Modo Desarrollo:</strong> Este es contenido de ejemplo. Configura WordPress para ver posts reales.
       </p>
@@ -181,10 +182,79 @@ if (relatedPosts.length === 0) {
 
   <div set:html={currentPost.content} />
 
+  <!-- CTA Poderoso tipo Alex Hormozi -->
+  <div class="my-16 -mx-8 md:-mx-12 not-prose">
+    <div class="bg-text-primary text-white px-8 md:px-12 py-12 md:py-16 rounded-lg">
+      <div class="max-w-2xl mx-auto text-center">
+        <!-- Hook - El Problema -->
+        <p class="text-lg md:text-xl text-white/90 mb-4 leading-relaxed">
+          ¿Cada cambio fiscal te genera más dudas que certezas?
+        </p>
+        
+        <!-- Headline - La Oferta -->
+        <h2 class="text-3xl md:text-4xl text-white/90 font-bold mb-6 leading-tight">
+          Deja de Perder Tiempo (y Dinero) Intentando Entenderlo Solo
+        </h2>
+        
+        <!-- Beneficio Claro -->
+        <p class="text-lg text-white/90 mb-8 leading-relaxed">
+          Nuestro equipo de contadores certificados se encarga de todo tu cumplimiento fiscal mientras tú te enfocas en hacer crecer tu negocio. <strong class="text-white">Sin sorpresas, sin multas, sin estrés.</strong>
+        </p>
+        
+        <!-- Social Proof Rápido -->
+        <div class="flex items-center justify-center gap-8 mb-8 text-white/80 text-sm">
+          <div class="flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+            </svg>
+            <span>+500 empresas</span>
+          </div>
+          <div class="flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <span>15+ años</span>
+          </div>
+          <div class="flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <span>100% confiable</span>
+          </div>
+        </div>
+        
+        <!-- CTA Principal -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button 
+            href="/contacto" 
+            variant="secondary" 
+            size="lg"
+            class="bg-white text-text-primary hover:bg-white/90 border-0 font-semibold text-lg px-8 py-4"
+          >
+            Solicitar Consulta Gratuita
+          </Button>
+          <Button 
+            href="/servicios" 
+            variant="ghost"
+            size="lg"
+            class="text-white border border-white/30 hover:bg-white/10 font-medium text-lg px-8 py-4"
+          >
+            Ver Servicios
+          </Button>
+        </div>
+        
+        <!-- Garantía/Risk Reversal -->
+        <p class="text-sm text-white/70 mt-6">
+          Primera consulta gratuita · Sin compromiso · Respuesta en menos de 24 horas
+        </p>
+      </div>
+    </div>
+  </div>
+
   <div slot="related-posts">
     <Section background="background" padding="md">
-      <Container size="md">
-        <h2 class="font-heading text-3xl font-bold text-dark mb-8 text-center">
+      <Container>
+        <h2 class="text-3xl font-bold text-text-primary mb-10 text-center">
           Artículos Relacionados
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
