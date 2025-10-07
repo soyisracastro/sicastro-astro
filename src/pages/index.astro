@@ -11,55 +11,56 @@ import BlogCard from '@/components/BlogCard.astro';
 import FAQItem from '@/components/FAQItem.astro';
 import { defaultSEO, stats, testimonials, faqItems, companyInfo } from '@/lib/data';
 import { getFeaturedServices } from '@/lib/services';
+import { fetchGraphQL } from '@/lib/wordpress/client';
+import { GET_POSTS } from '@/lib/wordpress/queries';
+import type { PostsQueryResponse } from '@/lib/wordpress/types';
 
 const featuredServices = getFeaturedServices();
 
-// TODO: Replace with actual WordPress data when available
-const mockBlogPosts = [
-  {
-    title: 'Nuevas disposiciones fiscales para 2025',
-    excerpt: 'Conoce los cambios más importantes en materia fiscal que entrarán en vigor el próximo año y cómo afectarán a tu empresa.',
-    date: '2024-12-15',
-    slug: 'nuevas-disposiciones-fiscales-2025',
-    category: 'Noticias Fiscales',
-    image: '/images/blog/fiscal-2025.jpg',
-    author: 'C.P. Salvador Castro',
-  },
-  {
-    title: 'Cómo organizar tus facturas electrónicas',
-    excerpt: 'Guía práctica para mantener tu contabilidad en orden y facilitar el cumplimiento de tus obligaciones fiscales.',
-    date: '2024-12-10',
-    slug: 'organizar-facturas-electronicas',
-    category: 'Tips Contables',
-    image: '/images/blog/facturas.jpg',
-    author: 'C.P. María Ruiz',
-  },
-  {
-    title: 'Obligaciones fiscales del primer trimestre',
-    excerpt: 'Calendario completo de las obligaciones fiscales que debes cumplir en los primeros tres meses del año.',
-    date: '2024-12-05',
-    slug: 'obligaciones-primer-trimestre',
-    category: 'Guías Prácticas',
-    image: '/images/blog/calendario.jpg',
-    author: 'L.C. Roberto Mendoza',
-  },
-];
+// Fetch latest blog posts from WordPress
+let blogPosts: Array<{
+  title: string;
+  excerpt: string;
+  date: string;
+  slug: string;
+  category?: string;
+  image?: string;
+  author?: string;
+}> = [];
+
+try {
+  const data = await fetchGraphQL<PostsQueryResponse>(GET_POSTS, { first: 3 });
+  
+  blogPosts = data.posts.nodes.map(post => ({
+    title: post.title,
+    excerpt: post.excerpt.replace(/<[^>]*>/g, '').trim(), // Strip HTML tags from excerpt
+    date: post.date,
+    slug: post.slug,
+    category: post.categories.nodes[0]?.name,
+    image: post.featuredImage?.node.sourceUrl,
+    author: post.author.node.name,
+  }));
+} catch (error) {
+  console.error('Error fetching blog posts:', error);
+  // Fallback to empty array if WordPress is unavailable
+}
 ---
 
 <PageLayout seo={defaultSEO}>
   <!-- Hero Section -->
   <Section padding="none" class="relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-primary opacity-90"></div>
+    <div class="absolute inset-0 bg-gradient-primary"></div>
+    <div class="absolute inset-0 bg-dark/30"></div>
     <div class="absolute inset-0">
       <div class="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10"></div>
     </div>
     
     <Container class="relative z-10 py-20 md:py-32">
-      <div class="max-w-4xl mx-auto text-center text-white">
-        <h1 class="font-heading text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="font-heading text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white drop-shadow-lg animate-fade-in">
           Tu Socio Estratégico en Materia Fiscal y Contable
         </h1>
-        <p class="text-xl md:text-2xl mb-8 text-white/90 animate-slide-up">
+        <p class="text-xl md:text-2xl mb-8 text-white drop-shadow-md animate-slide-up">
           Más de 15 años de experiencia brindando soluciones integrales a empresas en México
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up">
@@ -75,7 +76,7 @@ const mockBlogPosts = [
 
     <!-- Wave divider -->
     <div class="absolute bottom-0 left-0 right-0">
-      <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-16 fill-background">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-16 fill-background" style="display: block; transform: scaleY(-1);">
         <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
       </svg>
     </div>
@@ -193,7 +194,7 @@ const mockBlogPosts = [
       />
       
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-        {mockBlogPosts.map(post => (
+        {blogPosts.map(post => (
           <BlogCard {...post} />
         ))}
       </div>
@@ -264,3 +265,4 @@ const mockBlogPosts = [
     </Container>
   </Section>
 </PageLayout>
+

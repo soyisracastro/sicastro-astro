@@ -24,8 +24,8 @@ export default {
         background: '#f6f7fb',
       },
       fontFamily: {
-        heading: ['Libre Caslon Display', 'serif'],
-        body: ['Quicksand', 'sans-serif'],
+        heading: ['Playfair Display', 'serif'],
+        body: ['Inter', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
