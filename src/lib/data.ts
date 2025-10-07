@@ -153,32 +153,26 @@ export const faqItems: FAQItem[] = [
 export const teamMembers: TeamMember[] = [
   {
     id: '1',
-    name: 'C.P. Salvador Isidro Castro',
+    name: 'C.P. Salomon Castro Charco',
     position: 'Socio Fundador',
     bio: 'Contador Público con más de 20 años de experiencia en asesoría fiscal y contable. Especialista en planeación fiscal para empresas del sector comercial y de servicios.',
     image: '/images/team/salvador-castro.jpg',
-    email: 'scastro@sicastro.com',
+    email: 'salomon@sicastro.com',
   },
   {
     id: '2',
-    name: 'C.P. María Elena Ruiz',
-    position: 'Socia - Directora de Auditoría',
-    bio: 'Contadora Pública certificada con maestría en Auditoría. Especialista en auditorías financieras y dictámenes fiscales.',
+    name: 'C.P. Israel Castro Urieta',
+    position: 'Socio Fundador',
+    bio: 'Contador Público con especialidad en tecnologías de la información.',
     image: '/images/team/maria-ruiz.jpg',
+    email: 'israel@sicastro.com',
   },
   {
     id: '3',
-    name: 'L.C. Roberto Mendoza',
+    name: 'C.P. María del Rosario Mondragón Jaimes',
     position: 'Director de Consultoría Financiera',
     bio: 'Licenciado en Contaduría con especialidad en Finanzas. Experto en proyecciones financieras y análisis de viabilidad de proyectos.',
     image: '/images/team/roberto-mendoza.jpg',
-  },
-  {
-    id: '4',
-    name: 'C.P. Laura Jiménez',
-    position: 'Gerente de Servicios Fiscales',
-    bio: 'Contadora Pública con certificación en materia fiscal. Especialista en cumplimiento de obligaciones fiscales y planeación tributaria.',
-    image: '/images/team/laura-jimenez.jpg',
   },
 ];
 

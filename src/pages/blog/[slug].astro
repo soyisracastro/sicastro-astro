@@ -191,7 +191,7 @@ if (relatedPosts.length === 0) {
           {relatedPosts.map(relatedPost => (
             <BlogCard
               title={relatedPost.title}
-              excerpt={relatedPost.excerpt}
+              excerpt={relatedPost.excerpt.replace(/<[^>]*>/g, '').trim()}
               date={relatedPost.date}
               slug={relatedPost.slug}
               image={relatedPost.featuredImage?.node.sourceUrl || relatedPost.image}

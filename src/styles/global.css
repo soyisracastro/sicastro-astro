@@ -1,5 +1,5 @@
 /* Importar fuentes de Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;800&display=swap');
 
 /* Tailwind CSS */
 @tailwind base;
@@ -9,12 +9,13 @@
 @layer base {
   /* Configuración de fuentes por defecto */
   html {
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Inter', sans-serif;
     @apply text-dark;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Libre Caslon Display', serif;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
     @apply text-dark;
   }
 
