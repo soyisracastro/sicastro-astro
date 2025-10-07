@@ -1,7 +1,5 @@
 ---
 import Card from './ui/Card.astro';
-import Badge from './ui/Badge.astro';
-import { formatDateShort } from '@/lib/utils';
 
 interface Props {
   title: string;
@@ -13,70 +11,51 @@ interface Props {
   author?: string;
 }
 
-const {
-  title,
-  excerpt,
-  date,
-  slug,
-  category,
-  image,
-  author,
-} = Astro.props;
+const { title, excerpt, date, slug, image, author } = Astro.props;
+
+// Format date
+const formattedDate = new Date(date).toLocaleDateString('es-MX', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
 ---
 
-<Card variant="hover" padding="none" href={`/blog/${slug}`}>
+<Card variant="hover" href={`/blog/${slug}`}>
   <!-- Image -->
   {image && (
-    <div class="relative h-48 overflow-hidden">
+    <div class="mb-6 -m-8 -mt-8">
       <img
         src={image}
         alt={title}
-        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+        class="w-full aspect-video object-cover"
       />
-      {category && (
-        <div class="absolute top-4 left-4">
-          <Badge variant="primary">{category}</Badge>
-        </div>
-      )}
     </div>
   )}
 
-  <!-- Content -->
-  <div class="p-6">
-    <!-- Meta -->
-    <div class="flex items-center text-sm text-gray-600 mb-3 space-x-4">
-      <time datetime={date} class="flex items-center">
-        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-        </svg>
-        {formatDateShort(date)}
-      </time>
-      {author && (
-        <span class="flex items-center">
-          <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-          </svg>
-          {author}
-        </span>
-      )}
-    </div>
+  <!-- Meta info -->
+  <div class="flex items-center gap-2 text-sm text-text-tertiary mb-3">
+    <time datetime={date}>{formattedDate}</time>
+    {author && (
+      <>
+        <span>·</span>
+        <span>{author}</span>
+      </>
+    )}
+  </div>
 
-    <!-- Title -->
-    <h3 class="font-heading text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors line-clamp-2">
-      {title}
-    </h3>
+  <!-- Title -->
+  <h3 class="text-xl font-semibold text-text-primary mb-3 group-hover:text-text-primary leading-snug">
+    {title}
+  </h3>
 
-    <!-- Excerpt -->
-    <p class="text-dark-light text-sm line-clamp-3 mb-4">
-      {excerpt}
-    </p>
+  <!-- Excerpt -->
+  <p class="text-[15px] text-text-secondary leading-relaxed line-clamp-3">
+    {excerpt}
+  </p>
 
-    <!-- Read more -->
-    <div class="flex items-center text-primary font-medium text-sm">
-      Leer más
-      <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-      </svg>
-    </div>
+  <!-- Read more link -->
+  <div class="mt-4 text-[15px] text-primary font-medium group-hover:text-primary-dark transition-colors">
+    Leer más
   </div>
 </Card>

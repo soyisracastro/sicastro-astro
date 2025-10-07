@@ -181,15 +181,15 @@ export const teamMembers: TeamMember[] = [
 // ============================================
 
 export const contactInfo = {
-  email: 'contacto@sicastro.com',
-  phone: '555-123-4567',
-  whatsapp: '5551234567',
+  email: 'hola@sicastro.com',
+  phone: '7676722455',
+  whatsapp: '5544753602',
   address: {
-    street: 'Av. Insurgentes Sur 1234',
-    colony: 'Col. Del Valle',
-    city: 'Ciudad de México',
-    state: 'CDMX',
-    zipCode: '03100',
+    street: '15 de Mayo #9',
+    colony: '',
+    city: 'San Jerónimo',
+    state: 'Michoacán',
+    zipCode: '61993',
     country: 'México',
   },
   social: {

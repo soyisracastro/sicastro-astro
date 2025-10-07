@@ -4,34 +4,34 @@ import { navItems, companyInfo } from '@/lib/data';
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-50 bg-white shadow-md">
+<header class="sticky top-0 z-50 bg-white border-b border-border">
   <div class="container-custom">
-    <div class="flex items-center justify-between py-4">
-      <!-- Logo -->
-      <a href="/" class="flex items-center space-x-3 focus-visible:focus">
-        <div class="flex items-center justify-center w-12 h-12 rounded-lg">
-          <img src="/favicon.png" alt={companyInfo.name} class="w-8 h-8" />
-        </div>
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo - Solo texto, minimalista -->
+      <a href="/" class="flex items-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-md">
         <div class="hidden sm:block">
-          <div class="font-heading text-xl font-bold text-dark leading-tight">
+          <div class="text-lg font-semibold text-text-primary leading-tight">
             {companyInfo.name}
           </div>
-          <div class="text-xs text-dark-light">
+          <div class="text-xs text-text-tertiary">
             {companyInfo.slogan}
           </div>
+        </div>
+        <div class="sm:hidden text-lg font-semibold text-text-primary">
+          {companyInfo.name}
         </div>
       </a>
 
       <!-- Desktop Navigation -->
-      <nav class="hidden lg:flex items-center space-x-8">
+      <nav class="hidden lg:flex items-center space-x-1">
         {navItems.map(item => (
           <a
             href={item.href}
             class:list={[
-              'text-base font-medium transition-colors duration-200 focus-visible:focus',
+              'px-3 py-2 text-[15px] font-normal transition-colors duration-fast rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2',
               currentPath === item.href
-                ? 'text-primary font-semibold'
-                : 'text-dark hover:text-primary'
+                ? 'text-text-primary font-medium bg-background'
+                : 'text-text-secondary hover:text-text-primary hover:bg-background-hover'
             ]}
           >
             {item.label}
@@ -39,7 +39,7 @@ const currentPath = Astro.url.pathname;
         ))}
         <a
           href="/contacto"
-          class="btn-primary"
+          class="ml-4 px-5 py-2 text-[15px] font-medium text-white bg-text-primary hover:bg-text-primary/90 transition-colors duration-fast rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
         >
           Contáctanos
         </a>
@@ -49,7 +49,7 @@ const currentPath = Astro.url.pathname;
       <button
         id="mobile-menu-button"
         type="button"
-        class="lg:hidden inline-flex items-center justify-center p-2 rounded-lg text-dark hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary"
+        class="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-text-secondary hover:text-text-primary hover:bg-background-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         aria-label="Abrir menú"
         aria-expanded="false"
       >
@@ -73,17 +73,17 @@ const currentPath = Astro.url.pathname;
   <!-- Mobile Menu -->
   <div
     id="mobile-menu"
-    class="hidden lg:hidden border-t border-gray-200"
+    class="hidden lg:hidden border-t border-border"
   >
-    <div class="container-custom py-4 space-y-2">
+    <div class="container-custom py-4 space-y-1">
       {navItems.map(item => (
         <a
           href={item.href}
           class:list={[
-            'block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200',
+            'block px-4 py-3 rounded-md text-[15px] font-normal transition-colors duration-fast',
             currentPath === item.href
-              ? 'bg-primary-light text-primary font-semibold'
-              : 'text-dark hover:bg-gray-100'
+              ? 'bg-background text-text-primary font-medium'
+              : 'text-text-secondary hover:bg-background-hover hover:text-text-primary'
           ]}
         >
           {item.label}
@@ -91,7 +91,7 @@ const currentPath = Astro.url.pathname;
       ))}
       <a
         href="/contacto"
-        class="block px-4 py-3 mt-4 text-center btn-primary w-full"
+        class="block px-4 py-3 mt-4 text-center text-[15px] font-medium text-white bg-text-primary hover:bg-text-primary/90 rounded-md transition-colors duration-fast"
       >
         Contáctanos
       </a>

@@ -8,16 +8,14 @@ interface Props {
 const { stat } = Astro.props;
 ---
 
-<div class="text-center animate-on-scroll">
-  {stat.icon && (
-    <div class="text-5xl mb-4">
-      {stat.icon}
-    </div>
-  )}
-  <div class="text-4xl md:text-5xl font-bold text-primary mb-2">
-    {stat.prefix}{stat.value}{stat.suffix}
+<div class="text-center">
+  <!-- Número grande y prominente -->
+  <div class="text-5xl md:text-6xl font-bold text-text-primary mb-2">
+    {stat.value}
   </div>
-  <div class="text-lg text-dark-light">
+  
+  <!-- Label descriptivo -->
+  <div class="text-base text-text-secondary">
     {stat.label}
   </div>
 </div>

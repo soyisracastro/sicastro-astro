@@ -1,6 +1,6 @@
 ---
 interface Props {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   href?: string;
   type?: 'button' | 'submit' | 'reset';
@@ -22,19 +22,18 @@ const {
   ...rest
 } = Astro.props;
 
-const baseClasses = 'inline-flex items-center justify-center font-medium transition-all duration-200 focus-visible:focus rounded-lg disabled:opacity-50 disabled:cursor-not-allowed';
+const baseClasses = 'inline-flex items-center justify-center font-medium transition-colors duration-fast focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-md disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none';
 
 const variantClasses = {
-  primary: 'text-white bg-primary hover:bg-primary-dark shadow-md hover:shadow-lg',
-  secondary: 'text-primary bg-white border-2 border-primary hover:bg-primary hover:text-white',
-  outline: 'text-dark bg-transparent border-2 border-dark hover:bg-dark hover:text-white',
-  ghost: 'text-dark hover:bg-gray-100',
+  primary: 'text-white bg-text-primary hover:bg-text-primary/90',
+  secondary: 'text-text-primary bg-transparent border border-border hover:bg-background-hover',
+  ghost: 'text-text-secondary hover:bg-background-hover hover:text-text-primary',
 };
 
 const sizeClasses = {
   sm: 'px-4 py-2 text-sm',
-  md: 'px-6 py-3 text-base',
-  lg: 'px-8 py-4 text-lg',
+  md: 'px-5 py-3 text-base',
+  lg: 'px-6 py-3.5 text-lg',
 };
 
 const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
