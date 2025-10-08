@@ -1,0 +1,148 @@
+---
+// Newsletter subscription box for Sendy integration
+// Configure SENDY_URL and SENDY_LIST_ID in .env
+---
+
+<div class="bg-background border border-border rounded-lg p-6 md:p-8 my-8">
+  <div class="max-w-2xl mx-auto">
+    <!-- Icon -->
+    <div class="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full mb-4 mx-auto">
+      <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+      </svg>
+    </div>
+
+    <!-- Title & Description -->
+    <h3 class="text-xl md:text-2xl font-bold text-text-primary text-center mb-2">
+      Recibe contenido exclusivo
+    </h3>
+    <p class="text-text-secondary text-center mb-6">
+      Mantente actualizado con las últimas novedades fiscales, contables y tips para tu negocio.
+    </p>
+
+    <!-- Newsletter Form -->
+    <form 
+      id="newsletter-form" 
+      class="flex flex-col sm:flex-row gap-3"
+      data-sendy-form
+    >
+      <input
+        type="email"
+        name="email"
+        placeholder="tu@email.com"
+        required
+        class="flex-1 px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-text-primary placeholder-text-tertiary"
+      />
+      <button
+        type="submit"
+        class="px-6 py-3 bg-primary-dark text-white font-medium rounded-md hover:bg-primary-dark transition-colors duration-fast whitespace-nowrap"
+      >
+        Suscribirme
+      </button>
+    </form>
+
+    <!-- Success Message -->
+    <div id="newsletter-success" class="hidden mt-4 p-4 bg-green-50 border border-green-200 rounded-md">
+      <p class="text-sm text-green-800 flex items-center">
+        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+        </svg>
+        <strong>¡Éxito!</strong>&nbsp;Revisa tu email para confirmar tu suscripción.
+      </p>
+    </div>
+
+    <!-- Error Message -->
+    <div id="newsletter-error" class="hidden mt-4 p-4 bg-red-50 border border-red-200 rounded-md">
+      <p class="text-sm text-red-800 flex items-center">
+        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+        </svg>
+        <strong>Error:</strong>&nbsp;<span id="error-message">No se pudo procesar la suscripción. Intenta nuevamente.</span>
+      </p>
+    </div>
+
+    <!-- Privacy Note -->
+    <p class="text-xs text-text-tertiary text-center mt-4">
+      No spam. Puedes darte de baja en cualquier momento. Ver <a href="/aviso-privacidad" class="text-primary hover:underline">aviso de privacidad</a>.
+    </p>
+  </div>
+</div>
+
+<script>
+  // Newsletter form handler for Sendy integration
+  const form = document.getElementById('newsletter-form') as HTMLFormElement;
+  const successMsg = document.getElementById('newsletter-success') as HTMLElement;
+  const errorMsg = document.getElementById('newsletter-error') as HTMLElement;
+  const errorText = document.getElementById('error-message') as HTMLElement;
+
+  // Get Sendy configuration from environment or use defaults
+  const SENDY_URL = import.meta.env.PUBLIC_SENDY_URL || 'http://your-sendy-installation.com';
+  const SENDY_LIST_ID = import.meta.env.PUBLIC_SENDY_LIST_ID || '';
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const emailInput = form.querySelector('input[name="email"]') as HTMLInputElement;
+      const email = emailInput.value.trim();
+      
+      if (!email) {
+        showError('Por favor ingresa un email válido.');
+        return;
+      }
+
+      // Hide previous messages
+      successMsg.classList.add('hidden');
+      errorMsg.classList.add('hidden');
+
+      // Disable submit button
+      const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      const originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Suscribiendo...';
+
+      try {
+        // Send to Sendy
+        const formData = new FormData();
+        formData.append('email', email);
+        formData.append('list', SENDY_LIST_ID);
+        formData.append('boolean', 'true'); // Return boolean response
+
+        const response = await fetch(`${SENDY_URL}/subscribe`, {
+          method: 'POST',
+          body: formData,
+        });
+
+        const result = await response.text();
+
+        if (result === '1' || result === 'true' || result.includes('success')) {
+          // Success
+          showSuccess();
+          emailInput.value = '';
+        } else if (result.includes('Already subscribed')) {
+          showError('Este email ya está suscrito.');
+        } else {
+          showError(result || 'No se pudo completar la suscripción.');
+        }
+      } catch (error) {
+        console.error('Newsletter subscription error:', error);
+        showError('Error de conexión. Por favor intenta más tarde.');
+      } finally {
+        // Re-enable submit button
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }
+    });
+  }
+
+  function showSuccess() {
+    successMsg.classList.remove('hidden');
+    errorMsg.classList.add('hidden');
+  }
+
+  function showError(message: string) {
+    errorText.textContent = message;
+    errorMsg.classList.remove('hidden');
+    successMsg.classList.add('hidden');
+  }
+</script>

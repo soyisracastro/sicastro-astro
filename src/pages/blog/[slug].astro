@@ -182,9 +182,9 @@ if (relatedPosts.length === 0) {
 
   <div set:html={currentPost.content} />
 
-  <!-- CTA Poderoso tipo Alex Hormozi -->
+  <!-- CTA -->
   <div class="my-16 -mx-8 md:-mx-12 not-prose">
-    <div class="bg-text-primary text-white px-8 md:px-12 py-12 md:py-16 rounded-lg">
+    <div class="bg-text-primary text-white px-8 md:px-12 py-12 md:py-16">
       <div class="max-w-2xl mx-auto text-center">
         <!-- Hook - El Problema -->
         <p class="text-lg md:text-xl text-white/90 mb-4 leading-relaxed">
@@ -251,7 +251,7 @@ if (relatedPosts.length === 0) {
     </div>
   </div>
 
-  <div slot="related-posts">
+  <div slot="related-posts" class="rounded-lg overflow-hidden not-prose">
     <Section background="background" padding="md">
       <Container>
         <h2 class="text-3xl font-bold text-text-primary mb-10 text-center">
