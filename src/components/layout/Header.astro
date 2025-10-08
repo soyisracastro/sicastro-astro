@@ -1,5 +1,6 @@
 ---
 import { navItems, companyInfo } from '@/lib/data';
+import Button from '@/components/ui/Button.astro';
 
 const currentPath = Astro.url.pathname;
 ---
@@ -37,12 +38,9 @@ const currentPath = Astro.url.pathname;
             {item.label}
           </a>
         ))}
-        <a
-          href="/contacto"
-          class="ml-4 px-5 py-2 text-[15px] font-medium text-white bg-text-primary hover:bg-text-primary/90 transition-colors duration-fast rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-        >
-          Contáctanos
-        </a>
+        <Button href="/contacto" variant="primary">
+        Contáctanos
+      </Button>
       </nav>
 
       <!-- Mobile Menu Button -->
@@ -89,12 +87,9 @@ const currentPath = Astro.url.pathname;
           {item.label}
         </a>
       ))}
-      <a
-        href="/contacto"
-        class="block px-4 py-3 mt-4 text-center text-[15px] font-medium text-white bg-text-primary hover:bg-text-primary/90 rounded-md transition-colors duration-fast"
-      >
+      <Button href="/contacto" variant="primary" class="w-full">
         Contáctanos
-      </a>
+      </Button>
     </div>
   </div>
 </header>
