@@ -38,45 +38,45 @@ const seo = {
 ---
 
 <PageLayout seo={seo}>
-  <!-- Hero Section -->
-  <Section background="gradient" padding="lg">
+  <!-- Hero Section - Minimalista -->
+  <Section background="white" padding="lg">
     <Container>
       <div class="max-w-4xl mx-auto">
         <!-- Breadcrumb -->
-        <nav class="flex items-center space-x-2 text-sm text-white/80 mb-6">
-          <a href="/" class="hover:text-white transition-colors">Inicio</a>
+        <nav class="flex items-center space-x-2 text-sm text-text-tertiary mb-8">
+          <a href="/" class="hover:text-primary transition-colors">Inicio</a>
           <span>/</span>
-          <a href="/servicios" class="hover:text-white transition-colors">Servicios</a>
+          <a href="/servicios" class="hover:text-primary transition-colors">Servicios</a>
           <span>/</span>
-          <span class="text-white font-medium">{service.title}</span>
+          <span class="text-primary font-medium">{service.title}</span>
         </nav>
 
         <!-- Service Icon and Category -->
-        <div class="flex items-center gap-4 mb-6">
-          <div class="flex items-center justify-center w-20 h-20 bg-white/10 backdrop-blur-sm rounded-lg">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="flex items-center justify-center w-20 h-20 bg-background rounded-lg border border-border">
             <span class="text-4xl">{service.icon}</span>
           </div>
-          <Badge variant={categoryColors[service.category]} size="lg">
+          <Badge variant={categoryColors[service.category]} size="md">
             {service.category.charAt(0).toUpperCase() + service.category.slice(1)}
           </Badge>
         </div>
 
         <!-- Title -->
-        <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 animate-fade-in">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6">
           {service.title}
         </h1>
 
         <!-- Description -->
-        <p class="text-xl md:text-2xl text-white/90 mb-8 animate-slide-up">
+        <p class="text-xl md:text-2xl text-text-secondary mb-10 leading-relaxed">
           {service.shortDescription}
         </p>
 
         <!-- CTA Buttons -->
         <div class="flex flex-col sm:flex-row gap-4">
-          <Button href="/contacto" variant="secondary" size="lg">
+          <Button href="/contacto" variant="primary" size="lg">
             Solicitar Este Servicio
           </Button>
-          <Button href="tel:555-123-4567" variant="outline" size="lg" class="bg-white/10 hover:bg-white hover:text-primary border-white">
+          <Button href="tel:555-123-4567" variant="secondary" size="lg">
             Llamar Ahora
           </Button>
         </div>
@@ -85,33 +85,31 @@ const seo = {
   </Section>
 
   <!-- Service Details -->
-  <Section background="white">
+  <Section background="background">
     <Container>
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
         <!-- Main Content -->
         <div class="lg:col-span-2">
           <!-- Full Description -->
           <div class="mb-12">
-            <h2 class="font-heading text-3xl font-bold text-dark mb-4">
+            <h2 class="text-3xl font-bold text-text-primary mb-6">
               Descripción del Servicio
             </h2>
-            <p class="text-lg text-dark-light leading-relaxed">
+            <p class="text-lg text-text-secondary leading-relaxed">
               {service.fullDescription}
             </p>
           </div>
 
           <!-- Benefits -->
           <div class="mb-12">
-            <h2 class="font-heading text-3xl font-bold text-dark mb-6">
+            <h2 class="text-3xl font-bold text-text-primary mb-6">
               Beneficios
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               {service.benefits.map(benefit => (
-                <div class="flex items-start bg-background p-4 rounded-lg">
-                  <svg class="w-6 h-6 text-accent mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                  </svg>
-                  <span class="text-dark">{benefit}</span>
+                <div class="flex items-start bg-white border border-border p-5 rounded-lg">
+                  <span class="mr-3 mt-1 text-text-tertiary">•</span>
+                  <span class="text-text-primary text-[15px]">{benefit}</span>
                 </div>
               ))}
             </div>
@@ -119,20 +117,20 @@ const seo = {
 
           <!-- Process -->
           <div class="mb-12">
-            <h2 class="font-heading text-3xl font-bold text-dark mb-6">
+            <h2 class="text-3xl font-bold text-text-primary mb-8">
               Nuestro Proceso de Trabajo
             </h2>
             <div class="space-y-6">
               {service.process.map((step, index) => (
-                <div class="flex items-start">
-                  <div class="flex-shrink-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mr-4">
+                <div class="flex items-start bg-white border border-border p-6 rounded-lg">
+                  <div class="flex-shrink-0 w-12 h-12 bg-text-primary text-white rounded-full flex items-center justify-center font-bold text-xl mr-5">
                     {step.step}
                   </div>
                   <div class="flex-1">
-                    <h3 class="font-semibold text-xl text-dark mb-2">
+                    <h3 class="font-semibold text-xl text-text-primary mb-2">
                       {step.title}
                     </h3>
-                    <p class="text-dark-light">
+                    <p class="text-text-secondary text-[15px] leading-relaxed">
                       {step.description}
                     </p>
                   </div>
@@ -146,82 +144,72 @@ const seo = {
         <div class="lg:col-span-1">
           <div class="sticky top-24 space-y-6">
             <!-- Pricing Card -->
-            <div class="bg-background rounded-lg p-6 shadow-md">
-              <h3 class="font-heading text-2xl font-bold text-dark mb-4">
+            <div class="bg-white border border-border rounded-lg p-6">
+              <h3 class="text-2xl font-bold text-text-primary mb-6">
                 Información de Precio
               </h3>
               
               {service.pricing.from && (
-                <div class="mb-4">
-                  <p class="text-sm text-dark-light mb-1">Desde</p>
-                  <p class="font-heading text-4xl font-bold text-primary">
+                <div class="mb-6">
+                  <p class="text-sm text-text-tertiary mb-2">Desde</p>
+                  <p class="text-4xl font-bold text-text-primary">
                     {formatCurrency(service.pricing.from)}
-                    {service.pricing.type === 'monthly' && <span class="text-lg font-normal text-dark-light">/mes</span>}
+                    {service.pricing.type === 'monthly' && <span class="text-lg font-normal text-text-secondary">/mes</span>}
                   </p>
                 </div>
               )}
               
-              <p class="text-dark-light mb-6">
+              <p class="text-text-secondary mb-6 text-[15px]">
                 {service.pricing.description}
               </p>
 
-              <Button href="/contacto" variant="primary" class="w-full mb-3">
+              <Button href="/contacto" variant="primary" size="md" class="w-full mb-3">
                 Solicitar Cotización
               </Button>
               
-              <a href="tel:555-123-4567" class="block text-center text-primary hover:text-primary-dark transition-colors">
+              <a href="tel:555-123-4567" class="block text-center text-sm text-primary hover:text-primary-dark transition-colors">
                 o llama al 555-123-4567
               </a>
             </div>
 
             <!-- Features List -->
-            <div class="bg-white rounded-lg p-6 shadow-md border-2 border-gray-100">
-              <h3 class="font-heading text-xl font-bold text-dark mb-4">
+            <div class="bg-white border border-border rounded-lg p-6">
+              <h3 class="text-xl font-bold text-text-primary mb-4">
                 ¿Qué Incluye?
               </h3>
               <ul class="space-y-3">
-                <li class="flex items-start text-sm">
-                  <svg class="w-5 h-5 text-accent mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                  </svg>
-                  <span class="text-dark">Consulta inicial gratuita</span>
+                <li class="flex items-start text-[15px]">
+                  <span class="mr-2 mt-1 text-text-tertiary">•</span>
+                  <span class="text-text-primary">Consulta inicial gratuita</span>
                 </li>
-                <li class="flex items-start text-sm">
-                  <svg class="w-5 h-5 text-accent mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                  </svg>
-                  <span class="text-dark">Atención personalizada</span>
+                <li class="flex items-start text-[15px]">
+                  <span class="mr-2 mt-1 text-text-tertiary">•</span>
+                  <span class="text-text-primary">Atención personalizada</span>
                 </li>
-                <li class="flex items-start text-sm">
-                  <svg class="w-5 h-5 text-accent mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                  </svg>
-                  <span class="text-dark">Reportes mensuales</span>
+                <li class="flex items-start text-[15px]">
+                  <span class="mr-2 mt-1 text-text-tertiary">•</span>
+                  <span class="text-text-primary">Reportes mensuales</span>
                 </li>
-                <li class="flex items-start text-sm">
-                  <svg class="w-5 h-5 text-accent mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                  </svg>
-                  <span class="text-dark">Soporte continuo</span>
+                <li class="flex items-start text-[15px]">
+                  <span class="mr-2 mt-1 text-text-tertiary">•</span>
+                  <span class="text-text-primary">Soporte continuo</span>
                 </li>
-                <li class="flex items-start text-sm">
-                  <svg class="w-5 h-5 text-accent mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                  </svg>
-                  <span class="text-dark">Acceso a portal en línea</span>
+                <li class="flex items-start text-[15px]">
+                  <span class="mr-2 mt-1 text-text-tertiary">•</span>
+                  <span class="text-text-primary">Acceso a portal en línea</span>
                 </li>
               </ul>
             </div>
 
             <!-- Contact Card -->
-            <div class="bg-primary text-white rounded-lg p-6 shadow-lg">
-              <h3 class="font-heading text-xl font-bold mb-3">
+            <div class="bg-background border border-border rounded-lg p-6">
+              <h3 class="text-xl font-bold text-text-primary mb-3">
                 ¿Tienes Dudas?
               </h3>
-              <p class="mb-4 text-white/90">
+              <p class="mb-6 text-text-secondary text-[15px]">
                 Nuestros expertos están listos para ayudarte
               </p>
-              <Button href="/contacto" variant="secondary" class="w-full">
+              <Button href="/contacto" variant="primary" size="md" class="w-full">
                 Contactar Ahora
               </Button>
             </div>
@@ -233,9 +221,9 @@ const seo = {
 
   <!-- Related Services -->
   {relatedServices.length > 0 && (
-    <Section background="background">
+    <Section background="white">
       <Container>
-        <h2 class="font-heading text-3xl md:text-4xl font-bold text-dark text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-text-primary text-center mb-12">
           Servicios Relacionados
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -247,21 +235,21 @@ const seo = {
     </Section>
   )}
 
-  <!-- CTA Section -->
-  <Section background="gradient">
+  <!-- CTA Section - Minimalista -->
+  <Section background="background">
     <Container>
-      <div class="max-w-3xl mx-auto text-center text-white">
-        <h2 class="font-heading text-4xl md:text-5xl font-bold mb-6">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-text-primary">
           ¿Listo para Empezar?
         </h2>
-        <p class="text-xl mb-8 text-white/90">
+        <p class="text-xl mb-10 text-text-secondary leading-relaxed">
           Contáctanos hoy y descubre cómo podemos ayudarte con {service.title.toLowerCase()}
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button href="/contacto" variant="secondary" size="lg">
+          <Button href="/contacto" variant="primary" size="lg">
             Solicitar Servicio
           </Button>
-          <Button href="/servicios" variant="outline" size="lg" class="bg-white/10 hover:bg-white hover:text-primary border-white">
+          <Button href="/servicios" variant="secondary" size="lg">
             Ver Todos los Servicios
           </Button>
         </div>

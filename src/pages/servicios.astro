@@ -4,8 +4,9 @@ import Section from '@/components/ui/Section.astro';
 import Container from '@/components/ui/Container.astro';
 import SectionTitle from '@/components/ui/SectionTitle.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
-import Badge from '@/components/ui/Badge.astro';
+import Button from '@/components/ui/Button.astro';
 import { services, getServicesByCategory } from '@/lib/services';
+import { contactInfo } from '@/lib/data';
 
 const categories = [
   { id: 'fiscal', label: 'Servicios Fiscales', icon: '📊' },
@@ -23,13 +24,13 @@ const seo = {
 
 <PageLayout seo={seo}>
   <!-- Hero Section -->
-  <Section background="gradient" padding="lg">
+  <Section background="background" padding="lg">
     <Container>
-      <div class="text-center text-white max-w-4xl mx-auto">
+      <div class="text-center max-w-4xl mx-auto">
         <h1 class="font-heading text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
           Nuestros Servicios
         </h1>
-        <p class="text-xl md:text-2xl text-white/90 animate-slide-up">
+        <p class="text-xl md:text-2xl animate-slide-up">
           Soluciones integrales diseñadas para el éxito de tu empresa
         </p>
       </div>
@@ -121,31 +122,25 @@ const seo = {
   })}
 
   <!-- CTA Section -->
-  <Section background="gradient">
+  <Section background="background" padding="lg">
     <Container>
-      <div class="max-w-3xl mx-auto text-center text-white">
+      <div class="max-w-3xl mx-auto text-center">
         <h2 class="font-heading text-4xl md:text-5xl font-bold mb-6">
           ¿Necesitas Ayuda con Tu Contabilidad?
         </h2>
-        <p class="text-xl mb-8 text-white/90">
+        <p class="text-xl mb-8">
           Agenda una consulta gratuita con nuestros expertos y descubre cómo podemos ayudarte a optimizar tus finanzas
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/contacto"
-            class="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-primary bg-white hover:bg-gray-100 transition-colors rounded-lg shadow-lg"
-          >
-            Solicitar Consulta Gratuita
-          </a>
-          <a
-            href="tel:555-123-4567"
-            class="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-white bg-white/10 hover:bg-white hover:text-primary border-2 border-white transition-colors rounded-lg"
-          >
+          <Button variant='primary' size='lg' href="/contacto"  >
+              Solicitar Consulta Gratuita
+          </Button>
+          <Button variant='ghost' size='lg' href={`tel:${contactInfo.phone}`}>
             <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
             </svg>
             Llamar Ahora
-          </a>
+          </Button>
         </div>
       </div>
     </Container>

@@ -1,5 +1,5 @@
-/* Importar fuentes de Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;800&display=swap');
+/* Importar solo Inter de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 /* Tailwind CSS */
 @tailwind base;
@@ -7,16 +7,16 @@
 @tailwind utilities;
 
 @layer base {
-  /* Configuración de fuentes por defecto */
+  /* Configuración base limpia */
   html {
-    font-family: 'Inter', sans-serif;
-    @apply text-dark;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    @apply text-text-primary;
   }
 
+  /* Todos los headings usan Inter también */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    @apply text-dark;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    @apply text-text-primary;
   }
 
   /* Smooth scrolling */
@@ -28,129 +28,132 @@
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    @apply bg-background text-dark;
+    @apply bg-white text-text-primary;
   }
 }
 
 @layer components {
   /* Contenedor principal con máximo ancho */
   .container-custom {
-    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+    @apply mx-auto max-w-7xl px-5 sm:px-6 lg:px-8;
   }
 
-  /* Botón primario */
+  /* Botón primario - Minimalista */
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-primary hover:bg-primary-dark transition-colors duration-200 rounded-lg shadow-md hover:shadow-lg;
+    @apply inline-flex items-center justify-center px-5 py-3 text-base font-medium text-white bg-text-primary hover:bg-text-primary/90 transition-colors duration-fast rounded-md;
   }
 
-  /* Botón secundario */
+  /* Botón secundario - Minimalista */
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-primary bg-white border-2 border-primary hover:bg-primary hover:text-white transition-colors duration-200 rounded-lg;
+    @apply inline-flex items-center justify-center px-5 py-3 text-base font-medium text-text-primary bg-transparent border border-border hover:bg-background-hover transition-colors duration-fast rounded-md;
   }
 
-  /* Botón outline */
+  /* Botón outline - Simplificado */
   .btn-outline {
-    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-dark bg-transparent border-2 border-dark hover:bg-dark hover:text-white transition-colors duration-200 rounded-lg;
+    @apply inline-flex items-center justify-center px-5 py-3 text-base font-medium text-text-secondary bg-transparent hover:bg-background-hover transition-colors duration-fast rounded-md;
   }
 
-  /* Sección con padding estándar */
+  /* Sección con padding estándar aumentado */
   .section {
-    @apply py-16 md:py-24;
+    @apply py-20 md:py-30;
   }
 
-  /* Título de sección */
+  /* Título de sección - Minimalista */
   .section-title {
-    @apply text-4xl md:text-5xl font-bold text-center mb-4;
+    @apply text-4xl md:text-5xl font-bold text-center mb-6 text-text-primary;
   }
 
   /* Subtítulo de sección */
   .section-subtitle {
-    @apply text-lg md:text-xl text-center text-dark-light mb-12;
+    @apply text-lg md:text-xl text-center text-text-secondary mb-16;
   }
 
-  /* Card base */
+  /* Card base - Sin sombras */
   .card {
-    @apply bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden;
+    @apply bg-white rounded-lg border border-border hover:border-border-hover transition-colors duration-fast overflow-hidden;
   }
 
-  /* Input de formulario */
+  /* Input de formulario - Minimalista */
   .form-input {
-    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200;
+    @apply w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:border-primary transition-colors duration-fast text-text-primary placeholder:text-text-tertiary;
   }
 
   /* Textarea de formulario */
   .form-textarea {
-    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 resize-none;
+    @apply w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:border-primary transition-colors duration-fast resize-y text-text-primary placeholder:text-text-tertiary;
   }
 
   /* Label de formulario */
   .form-label {
-    @apply block text-sm font-medium text-dark mb-2;
+    @apply block text-sm font-medium text-text-primary mb-2;
   }
 }
 
 @layer utilities {
-  /* Gradiente de fondo */
-  .bg-gradient-primary {
-    background: linear-gradient(135deg, #004878 0%, #8fc2e9 100%);
+  /* Focus visible mejorado para accesibilidad */
+  .focus-visible:focus {
+    @apply outline-none ring-2 ring-primary ring-offset-2;
   }
 
-  /* Gradiente de texto */
-  .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #004878 0%, #8fc2e9 100%);
-  }
-
-  /* Sombra personalizada */
-  .shadow-primary {
-    box-shadow: 0 10px 40px rgba(0, 72, 120, 0.1);
-  }
-
-  /* Animación de entrada */
-  .animate-on-scroll {
-    @apply opacity-0 translate-y-4 transition-all duration-700 ease-out;
-  }
-
-  .animate-on-scroll.is-visible {
-    @apply opacity-100 translate-y-0;
+  /* Skip to main content (accesibilidad) */
+  .skip-to-main {
+    @apply absolute left-0 top-0 bg-text-primary text-white px-4 py-2 -translate-y-full focus:translate-y-0 transition-transform rounded-md;
   }
 }
 
-/* Estilos para contenido del blog (WordPress) */
+/* Estilos para contenido del blog (WordPress) - Minimalista */
 .prose-blog {
   @apply prose prose-lg max-w-none;
-  @apply prose-headings:font-heading prose-headings:text-dark;
-  @apply prose-p:text-dark prose-p:leading-relaxed;
-  @apply prose-a:text-primary prose-a:no-underline hover:prose-a:underline;
-  @apply prose-strong:text-dark;
+  @apply prose-headings:font-sans prose-headings:text-text-primary prose-headings:font-semibold;
+  @apply prose-p:text-text-primary prose-p:leading-relaxed;
+  @apply prose-a:text-primary prose-a:no-underline hover:prose-a:underline hover:prose-a:text-primary-dark;
+  @apply prose-strong:text-text-primary prose-strong:font-semibold;
   @apply prose-ul:list-disc prose-ol:list-decimal;
-  @apply prose-li:text-dark;
-  @apply prose-img:rounded-lg prose-img:shadow-md;
-  @apply prose-code:text-primary prose-code:bg-gray-100 prose-code:px-1 prose-code:py-0.5 prose-code:rounded;
-  @apply prose-pre:bg-dark prose-pre:text-white;
+  @apply prose-li:text-text-primary;
+  @apply prose-img:rounded-lg;
+  @apply prose-code:text-primary prose-code:bg-background prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded text-sm;
+  @apply prose-pre:bg-text-primary prose-pre:text-white prose-pre:rounded-lg;
+  @apply prose-blockquote:border-l-primary prose-blockquote:text-text-secondary prose-blockquote:italic;
 }
 
-/* Utilidades para focus visible (accesibilidad) */
-.focus-visible:focus {
-  @apply outline-none ring-2 ring-primary ring-offset-2;
-}
-
-/* Loading spinner */
-.spinner {
-  border: 3px solid #f3f3f3;
-  border-top: 3px solid #004878;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Skip to main content (accesibilidad) */
-.skip-to-main {
-  @apply absolute left-0 top-0 bg-primary text-white px-4 py-2 -translate-y-full focus:translate-y-0 transition-transform;
+/* Estilos mejorados para contenido del blog - Mayor legibilidad */
+.prose-blog-enhanced {
+  @apply prose prose-lg max-w-none;
+  
+  /* Headings */
+  @apply prose-headings:font-sans prose-headings:text-text-primary prose-headings:font-bold;
+  @apply prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6;
+  @apply prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-4;
+  @apply prose-h4:text-xl prose-h4:mt-8 prose-h4:mb-3;
+  
+  /* Paragraphs - Tamaño aumentado para mejor legibilidad */
+  @apply prose-p:text-text-primary prose-p:text-lg prose-p:leading-relaxed prose-p:mb-6;
+  
+  /* Links */
+  @apply prose-a:text-primary prose-a:no-underline prose-a:font-medium hover:prose-a:underline hover:prose-a:text-primary-dark;
+  
+  /* Strong and emphasis */
+  @apply prose-strong:text-text-primary prose-strong:font-semibold;
+  @apply prose-em:text-text-primary;
+  
+  /* Lists - Tamaño aumentado */
+  @apply prose-ul:list-disc prose-ul:my-6;
+  @apply prose-ol:list-decimal prose-ol:my-6;
+  @apply prose-li:text-text-primary prose-li:text-lg prose-li:leading-relaxed prose-li:mb-2;
+  
+  /* Images */
+  @apply prose-img:rounded-lg prose-img:my-8;
+  
+  /* Code */
+  @apply prose-code:text-primary prose-code:bg-background prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-base prose-code:font-normal;
+  @apply prose-pre:bg-text-primary prose-pre:text-white prose-pre:rounded-lg prose-pre:p-6 prose-pre:my-8;
+  
+  /* Blockquotes */
+  @apply prose-blockquote:border-l-4 prose-blockquote:border-l-border prose-blockquote:pl-6 prose-blockquote:my-8;
+  @apply prose-blockquote:text-text-secondary prose-blockquote:text-lg prose-blockquote:italic;
+  
+  /* Tables */
+  @apply prose-table:border-collapse prose-table:w-full;
+  @apply prose-th:border prose-th:border-border prose-th:bg-background prose-th:p-3 prose-th:text-left prose-th:font-semibold;
+  @apply prose-td:border prose-td:border-border prose-td:p-3;
 }

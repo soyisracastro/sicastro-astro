@@ -74,20 +74,25 @@ const seo = {
 ---
 
 <PageLayout seo={seo}>
-  <Section background="gradient" padding="md">
+  <!-- Hero Section - Minimalista -->
+  <Section background="white" padding="md">
     <Container>
-      <div class="max-w-4xl mx-auto text-center text-white">
-        <h1 class="font-heading text-5xl md:text-6xl font-bold mb-6">Blog</h1>
-        <p class="text-xl md:text-2xl text-white/90">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-5xl md:text-6xl font-bold mb-6 text-text-primary">
+          Blog
+        </h1>
+        <p class="text-xl md:text-2xl text-text-secondary">
           Mantente informado con las últimas noticias fiscales y contables
         </p>
       </div>
     </Container>
   </Section>
 
+  <!-- Blog Grid -->
   <Section background="background">
     <Container>
       <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <!-- Posts Grid -->
         <div class="lg:col-span-3">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             {posts.map(post => (
@@ -104,15 +109,20 @@ const seo = {
           </div>
         </div>
 
+        <!-- Sidebar -->
         <div class="lg:col-span-1">
           <div class="sticky top-24 space-y-6">
-            <div class="bg-white rounded-lg p-6 shadow-md">
-              <h3 class="font-heading text-xl font-bold text-dark mb-4">Categorías</h3>
+            <!-- Categories -->
+            <div class="bg-white border border-border rounded-lg p-6">
+              <h3 class="text-xl font-bold text-text-primary mb-4">Categorías</h3>
               <ul class="space-y-2">
                 {categories.map(cat => (
                   <li>
-                    <a href={`/blog?categoria=${cat.slug}`} class="flex justify-between py-2 px-3 rounded hover:bg-primary-light">
-                      <span class="text-dark">{cat.name}</span>
+                    <a 
+                      href={`/blog?categoria=${cat.slug}`} 
+                      class="flex justify-between items-center py-2 px-3 rounded-md hover:bg-background-hover transition-colors duration-fast group"
+                    >
+                      <span class="text-text-primary group-hover:text-text-primary">{cat.name}</span>
                       <Badge variant="default" size="sm">{cat.count}</Badge>
                     </a>
                   </li>
@@ -120,12 +130,23 @@ const seo = {
               </ul>
             </div>
 
-            <div class="bg-gradient-primary text-white rounded-lg p-6">
-              <h3 class="font-heading text-xl font-bold mb-3">Newsletter</h3>
-              <p class="text-sm mb-4">Recibe noticias fiscales en tu correo</p>
+            <!-- Newsletter -->
+            <div class="bg-white border border-border rounded-lg p-6">
+              <h3 class="text-xl font-bold text-text-primary mb-3">Newsletter</h3>
+              <p class="text-sm text-text-secondary mb-4">
+                Recibe noticias fiscales en tu correo
+              </p>
               <form action="/newsletter" method="POST" class="space-y-3">
-                <input type="email" name="email" placeholder="tu@email.com" required class="w-full px-4 py-2 rounded-lg text-dark" />
-                <Button type="submit" variant="secondary" class="w-full">Suscribirse</Button>
+                <input 
+                  type="email" 
+                  name="email" 
+                  placeholder="tu@email.com" 
+                  required 
+                  class="w-full px-4 py-3 border border-border rounded-md text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-primary transition-colors bg-white"
+                />
+                <Button type="submit" variant="primary" size="md" class="w-full">
+                  Suscribirse
+                </Button>
               </form>
             </div>
           </div>

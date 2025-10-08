@@ -33,7 +33,7 @@ try {
   
   blogPosts = data.posts.nodes.map(post => ({
     title: post.title,
-    excerpt: post.excerpt.replace(/<[^>]*>/g, '').trim(), // Strip HTML tags from excerpt
+    excerpt: post.excerpt.replace(/<[^>]*>/g, '').trim(),
     date: post.date,
     slug: post.slug,
     category: post.categories.nodes[0]?.name,
@@ -42,50 +42,36 @@ try {
   }));
 } catch (error) {
   console.error('Error fetching blog posts:', error);
-  // Fallback to empty array if WordPress is unavailable
 }
 ---
 
 <PageLayout seo={defaultSEO}>
-  <!-- Hero Section -->
-  <Section padding="none" class="relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-primary"></div>
-    <div class="absolute inset-0 bg-dark/30"></div>
-    <div class="absolute inset-0">
-      <div class="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10"></div>
-    </div>
-    
-    <Container class="relative z-10 py-20 md:py-32">
+  <!-- Hero Section - Minimalista con jerarquía tipográfica -->
+  <Section padding="none" class="bg-white">
+    <Container class="py-24 md:py-32">
       <div class="max-w-4xl mx-auto text-center">
-        <h1 class="font-heading text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white drop-shadow-lg animate-fade-in">
+        <h1 class="text-5xl md:text-6xl font-bold mb-6 text-text-primary leading-tight">
           Tu Socio Estratégico en Materia Fiscal y Contable
         </h1>
-        <p class="text-xl md:text-2xl mb-8 text-white drop-shadow-md animate-slide-up">
+        <p class="text-xl md:text-2xl mb-10 text-text-secondary leading-relaxed">
           Más de 15 años de experiencia brindando soluciones integrales a empresas en México
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up">
-          <Button href="/servicios" size="lg" variant="secondary">
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <Button href="/servicios" size="lg" variant="primary">
             Ver Servicios
           </Button>
-          <Button href="/contacto" size="lg" variant="outline" class="bg-white/10 hover:bg-white hover:text-primary border-white">
+          <Button href="/contacto" size="lg" variant="secondary">
             Solicitar Consulta
           </Button>
         </div>
       </div>
     </Container>
-
-    <!-- Wave divider -->
-    <div class="absolute bottom-0 left-0 right-0">
-      <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-16 fill-background" style="display: block; transform: scaleY(-1);">
-        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
-      </svg>
-    </div>
   </Section>
 
   <!-- Stats Section -->
   <Section background="background">
     <Container>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-16">
         {stats.map(stat => (
           <StatCard stat={stat} />
         ))}
@@ -115,53 +101,45 @@ try {
     </Container>
   </Section>
 
-  <!-- About Preview Section -->
-  <Section background="gradient">
+  <!-- About Preview Section - Fondo blanco -->
+  <Section background="background">
     <Container>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div class="animate-on-scroll">
-          <h2 class="font-heading text-4xl md:text-5xl font-bold mb-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 text-text-primary">
             {companyInfo.name}
           </h2>
-          <p class="text-lg mb-6 text-white/90">
+          <p class="text-lg mb-6 text-text-secondary leading-relaxed">
             {companyInfo.description}
           </p>
-          <p class="text-lg mb-6 text-white/90">
+          <p class="text-lg mb-8 text-text-secondary leading-relaxed">
             Fundados en {companyInfo.founded}, nos hemos consolidado como uno de los despachos contables más confiables de México, ofreciendo servicios de alta calidad respaldados por un equipo de profesionales certificados.
           </p>
-          <ul class="space-y-3 mb-8">
-            <li class="flex items-start">
-              <svg class="w-6 h-6 mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-              </svg>
+          <ul class="space-y-3 mb-10">
+            <li class="flex items-start text-base text-text-primary">
+              <span class="mr-3 mt-1 text-text-tertiary">•</span>
               <span>Equipo de profesionales certificados</span>
             </li>
-            <li class="flex items-start">
-              <svg class="w-6 h-6 mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-              </svg>
+            <li class="flex items-start text-base text-text-primary">
+              <span class="mr-3 mt-1 text-text-tertiary">•</span>
               <span>Tecnología de vanguardia</span>
             </li>
-            <li class="flex items-start">
-              <svg class="w-6 h-6 mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-              </svg>
+            <li class="flex items-start text-base text-text-primary">
+              <span class="mr-3 mt-1 text-text-tertiary">•</span>
               <span>Atención personalizada</span>
             </li>
           </ul>
-          <Button href="/sobre-nosotros" variant="secondary" size="lg">
+          <Button href="/sobre-nosotros" variant="primary" size="lg">
             Conoce Más Sobre Nosotros
           </Button>
         </div>
         
-        <div class="relative animate-on-scroll">
-          <div class="aspect-square rounded-lg bg-white/10 backdrop-blur-sm p-8">
-            <div class="h-full flex items-center justify-center">
-              <div class="text-center">
-                <div class="text-6xl mb-4">🏆</div>
-                <p class="text-2xl font-bold mb-2">+500</p>
-                <p class="text-lg">Clientes Satisfechos</p>
-              </div>
+        <div class="relative">
+          <div class="aspect-square rounded-lg border border-border bg-white p-12 flex items-center justify-center">
+            <div class="text-center">
+              <div class="text-7xl mb-6">🏆</div>
+              <p class="text-5xl font-bold mb-3 text-text-primary">+500</p>
+              <p class="text-lg text-text-secondary">Clientes Satisfechos</p>
             </div>
           </div>
         </div>
@@ -170,7 +148,7 @@ try {
   </Section>
 
   <!-- Testimonials Section -->
-  <Section background="background">
+  <Section background="white">
     <Container>
       <SectionTitle
         title="Lo Que Dicen Nuestros Clientes"
@@ -186,7 +164,7 @@ try {
   </Section>
 
   <!-- Blog Preview Section -->
-  <Section background="white">
+  <Section background="background">
     <Container>
       <SectionTitle
         title="Últimas Noticias"
@@ -208,7 +186,7 @@ try {
   </Section>
 
   <!-- FAQ Section -->
-  <Section background="background">
+  <Section background="white">
     <Container>
       <SectionTitle
         title="Preguntas Frecuentes"
@@ -216,7 +194,7 @@ try {
       />
       
       <div class="max-w-3xl mx-auto">
-        <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+        <div class="bg-white rounded-lg border border-border p-8 md:p-10">
           {faqItems.map((item, index) => (
             <FAQItem item={item} index={index} />
           ))}
@@ -224,7 +202,7 @@ try {
       </div>
 
       <div class="text-center mt-12">
-        <p class="text-lg text-dark-light mb-4">
+        <p class="text-lg text-text-secondary mb-4">
           ¿Tienes más preguntas? Estamos aquí para ayudarte
         </p>
         <Button href="/contacto" variant="primary" size="lg">
@@ -234,35 +212,34 @@ try {
     </Container>
   </Section>
 
-  <!-- Newsletter CTA Section -->
-  <Section background="gradient">
+  <!-- Newsletter CTA Section - Fondo claro -->
+  <Section background="background">
     <Container>
-      <div class="max-w-3xl mx-auto text-center">
-        <h2 class="font-heading text-4xl md:text-5xl font-bold mb-6">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-text-primary">
           Suscríbete a Nuestro Newsletter
         </h2>
-        <p class="text-xl mb-8 text-white/90">
+        <p class="text-xl mb-10 text-text-secondary leading-relaxed">
           Recibe las últimas actualizaciones fiscales, tips contables y noticias relevantes directamente en tu correo
         </p>
         
-        <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto" action="/newsletter" method="POST">
+        <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" action="/newsletter" method="POST">
           <input
             type="email"
             name="email"
             placeholder="tu@email.com"
             required
-            class="flex-1 px-6 py-4 rounded-lg text-dark focus:outline-none focus:ring-2 focus:ring-white"
+            class="flex-1 px-4 py-3 rounded-md border border-border text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-primary transition-colors bg-white"
           />
-          <Button type="submit" variant="secondary" size="lg" class="whitespace-nowrap">
+          <Button type="submit" variant="primary" size="lg" class="whitespace-nowrap">
             Suscribirse
           </Button>
         </form>
         
-        <p class="text-sm mt-4 text-white/70">
-          Al suscribirte, aceptas nuestra <a href="/aviso-privacidad" class="underline hover:text-white">Política de Privacidad</a>
+        <p class="text-sm mt-6 text-text-tertiary">
+          Al suscribirte, aceptas nuestra <a href="/aviso-privacidad" class="text-primary hover:text-primary-dark underline transition-colors">Política de Privacidad</a>
         </p>
       </div>
     </Container>
   </Section>
 </PageLayout>
-
