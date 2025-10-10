@@ -11,18 +11,17 @@ import UseCaseCard from '@/components/UseCaseCard.astro';
 import ChecklistItem from '@/components/ChecklistItem.astro';
 import TestimonialCard from '@/components/TestimonialCard.astro';
 import FAQItem from '@/components/FAQItem.astro';
-import type { SEO, Testimonial, FAQItem as FAQItemType } from '@/types';
+import type { SEOProps, Testimonial, FAQItem as FAQItemType } from '@/types';
 
-const seo: SEO = {
+const seo: SEOProps = {
   title: 'Asesoría Fiscal 1:1 | Resuelve tus Dudas con un Contador Certificado',
   description: 'Agenda una sesión de 1 hora por videollamada con un contador certificado. Resuelve tus dudas fiscales, evita errores costosos y toma decisiones informadas. $1,200 por sesión.',
-  keywords: 'asesoría fiscal, contador certificado, consultoría contable, dudas fiscales, SAT México, asesoría en línea',
-  ogImage: '/og-asesoria.jpg',
 };
 
 // Testimonials data
 const testimonials: Testimonial[] = [
   {
+    id: '1',
     name: 'Roberto Méndez',
     position: 'Arquitecto',
     company: 'CDMX',
@@ -30,6 +29,7 @@ const testimonials: Testimonial[] = [
     rating: 5,
   },
   {
+    id: '2',
     name: 'María González',
     position: 'Consultora',
     company: 'Nuevo León',
@@ -37,6 +37,7 @@ const testimonials: Testimonial[] = [
     rating: 5,
   },
   {
+    id: '3',
     name: 'Carlos Ramírez',
     position: 'Comerciante',
     company: 'Jalisco',
@@ -48,30 +49,37 @@ const testimonials: Testimonial[] = [
 // FAQ data
 const faqItems: FAQItemType[] = [
   {
+    id: '1',
     question: '¿Cuánto dura la sesión?',
     answer: 'Exactamente 1 hora por videollamada. Si necesitas más tiempo, puedes agendar sesiones adicionales.',
   },
   {
+    id: '2',
     question: '¿Qué necesito preparar?',
     answer: 'Te enviaremos un cuestionario breve antes de la sesión para maximizar el tiempo. Si tienes documentos específicos, mejor.',
   },
   {
+    id: '3',
     question: '¿Puedo grabar la sesión?',
     answer: 'Sí, puedes grabar para tu referencia personal. Adicionalmente te enviamos un resumen por escrito.',
   },
   {
+    id: '4',
     question: '¿Qué pasa si necesito más tiempo?',
     answer: 'Puedes extender la sesión (se cobra proporcionalmente) o agendar una sesión adicional.',
   },
   {
+    id: '5',
     question: '¿Ofrecen reembolso?',
     answer: 'Sí. Si en los primeros 15 minutos consideras que no estamos resolviendo tu duda, te devolvemos el 100%.',
   },
   {
+    id: '6',
     question: '¿Pueden ayudarme con trámites después?',
     answer: 'Claro. Si necesitas que realicemos algún trámite o servicio adicional, te cotizamos al final de la sesión.',
   },
   {
+    id: '7',
     question: '¿La asesoría es deducible?',
     answer: 'Sí, si eres persona física con actividad empresarial o persona moral, es 100% deducible de impuestos.',
   },

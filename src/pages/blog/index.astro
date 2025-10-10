@@ -7,11 +7,11 @@ import Badge from '@/components/ui/Badge.astro';
 import Button from '@/components/ui/Button.astro';
 import { fetchGraphQL } from '@/lib/wordpress/client';
 import { GET_POSTS, GET_CATEGORIES } from '@/lib/wordpress/queries';
-import type { PostsQueryResponse, CategoriesQueryResponse } from '@/lib/wordpress/types';
+import type { PostsQueryResponse, CategoriesQueryResponse, WordPressPost, WordPressCategory } from '@/lib/wordpress/types';
 
 // Try to fetch from WordPress, fallback to mock data
-let posts: any[] = [];
-let categories: any[] = [];
+let posts: WordPressPost[] = [];
+let categories: WordPressCategory[] = [];
 
 try {
   const postsData = await fetchGraphQL<PostsQueryResponse>(GET_POSTS, { first: 12 });
@@ -31,9 +31,10 @@ try {
     title: 'Nuevas disposiciones fiscales para 2025',
     slug: 'nuevas-disposiciones-fiscales-2025',
     excerpt: 'Conoce los cambios más importantes en materia fiscal que entrarán en vigor el próximo año.',
+    content: '',
     date: '2024-12-15T10:00:00',
     featuredImage: { node: { sourceUrl: '/images/blog/fiscal-2025.jpg', altText: 'Fiscal 2025' } },
-    categories: { nodes: [{ name: 'Noticias Fiscales', slug: 'noticias-fiscales' }] },
+    categories: { nodes: [{ id: '1', name: 'Noticias Fiscales', slug: 'noticias-fiscales' }] },
     author: { node: { name: 'C.P. Salvador Castro', avatar: { url: '' } } },
   },
   {
@@ -41,9 +42,10 @@ try {
     title: 'Cómo organizar tus facturas electrónicas',
     slug: 'organizar-facturas-electronicas',
     excerpt: 'Guía práctica para mantener tu contabilidad en orden y facilitar el cumplimiento fiscal.',
+    content: '',
     date: '2024-12-10T10:00:00',
     featuredImage: { node: { sourceUrl: '/images/blog/facturas.jpg', altText: 'Facturas' } },
-    categories: { nodes: [{ name: 'Tips Contables', slug: 'tips-contables' }] },
+    categories: { nodes: [{ id: '2', name: 'Tips Contables', slug: 'tips-contables' }] },
     author: { node: { name: 'C.P. María Ruiz', avatar: { url: '' } } },
   },
   {
@@ -51,18 +53,19 @@ try {
     title: 'Obligaciones fiscales del primer trimestre',
     slug: 'obligaciones-primer-trimestre',
     excerpt: 'Calendario completo de las obligaciones fiscales del primer trimestre del año.',
+    content: '',
     date: '2024-12-05T10:00:00',
     featuredImage: { node: { sourceUrl: '/images/blog/calendario.jpg', altText: 'Calendario' } },
-    categories: { nodes: [{ name: 'Guías Prácticas', slug: 'guias-practicas' }] },
+    categories: { nodes: [{ id: '3', name: 'Guías Prácticas', slug: 'guias-practicas' }] },
     author: { node: { name: 'L.C. Roberto Mendoza', avatar: { url: '' } } },
   },
   ];
 
   categories = [
-    { name: 'Noticias Fiscales', slug: 'noticias-fiscales', count: 15 },
-    { name: 'Tips Contables', slug: 'tips-contables', count: 12 },
-    { name: 'Guías Prácticas', slug: 'guias-practicas', count: 8 },
-    { name: 'Actualizaciones Legales', slug: 'actualizaciones-legales', count: 6 },
+    { id: '1', name: 'Noticias Fiscales', slug: 'noticias-fiscales', count: 15 },
+    { id: '2', name: 'Tips Contables', slug: 'tips-contables', count: 12 },
+    { id: '3', name: 'Guías Prácticas', slug: 'guias-practicas', count: 8 },
+    { id: '4', name: 'Actualizaciones Legales', slug: 'actualizaciones-legales', count: 6 },
   ];
 }
 

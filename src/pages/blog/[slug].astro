@@ -7,7 +7,7 @@ import Button from '@/components/ui/Button.astro';
 import { calculateReadingTime, stripHtml } from '@/lib/utils';
 import { fetchGraphQL } from '@/lib/wordpress/client';
 import { GET_POSTS, GET_POST_BY_SLUG_WITH_SEO, GET_RELATED_POSTS } from '@/lib/wordpress/queries';
-import type { PostsQueryResponse, PostQueryResponse } from '@/lib/wordpress/types';
+import type { PostsQueryResponse, PostQueryResponse, WordPressPost } from '@/lib/wordpress/types';
 
 // Generate static paths from WordPress posts
 export async function getStaticPaths() {
@@ -32,7 +32,7 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 
 // Always fetch the complete post data (including content) by slug
-let post: any = null;
+let post: WordPressPost | null = null;
 
 try {
   const data = await fetchGraphQL<PostQueryResponse>(GET_POST_BY_SLUG_WITH_SEO, { slug });
@@ -101,7 +101,7 @@ const mockPost = post || {
     },
   },
   categories: {
-    nodes: [{ name: 'Noticias Fiscales', slug: 'noticias-fiscales' }],
+    nodes: [{ id: '1', name: 'Noticias Fiscales', slug: 'noticias-fiscales' }],
   },
   author: {
     node: {
@@ -125,13 +125,13 @@ const seo = {
 };
 
 // Get related posts if WordPress is available
-let relatedPosts: any[] = [];
+let relatedPosts: WordPressPost[] = [];
 const isWordPressConnected = !!post;
 
 if (isWordPressConnected && currentPost.categories.nodes[0]) {
   try {
     const categorySlug = currentPost.categories.nodes[0].slug;
-    const relatedData = await fetchGraphQL<any>(GET_RELATED_POSTS, {
+    const relatedData = await fetchGraphQL<PostsQueryResponse>(GET_RELATED_POSTS, {
       categorySlug,
       excludeId: currentPost.id,
       first: 2,
@@ -146,18 +146,26 @@ if (isWordPressConnected && currentPost.categories.nodes[0]) {
 if (relatedPosts.length === 0) {
   relatedPosts = [
     {
+      id: '1',
       title: 'Cómo optimizar tu carga fiscal',
       slug: 'optimizar-carga-fiscal',
       excerpt: 'Estrategias legales para reducir impuestos.',
+      content: '',
       date: '2024-12-01',
-      featuredImage: { node: { sourceUrl: '/images/blog/fiscal.jpg' } },
+      featuredImage: { node: { sourceUrl: '/images/blog/fiscal.jpg', altText: 'Optimizar carga fiscal' } },
+      categories: { nodes: [{ id: '1', name: 'Fiscal', slug: 'fiscal' }] },
+      author: { node: { name: 'C.P. Salvador Castro', avatar: { url: '' } } },
     },
     {
+      id: '2',
       title: 'Calendario fiscal 2025',
       slug: 'calendario-fiscal-2025',
       excerpt: 'Todas las fechas importantes del año.',
+      content: '',
       date: '2024-11-28',
-      featuredImage: { node: { sourceUrl: '/images/blog/calendar.jpg' } },
+      featuredImage: { node: { sourceUrl: '/images/blog/calendar.jpg', altText: 'Calendario fiscal' } },
+      categories: { nodes: [{ id: '1', name: 'Fiscal', slug: 'fiscal' }] },
+      author: { node: { name: 'C.P. Salvador Castro', avatar: { url: '' } } },
     },
   ];
 }
@@ -264,7 +272,7 @@ if (relatedPosts.length === 0) {
               excerpt={relatedPost.excerpt.replace(/<[^>]*>/g, '').trim()}
               date={relatedPost.date}
               slug={relatedPost.slug}
-              image={relatedPost.featuredImage?.node.sourceUrl || relatedPost.image}
+              image={relatedPost.featuredImage?.node.sourceUrl}
             />
           ))}
         </div>
