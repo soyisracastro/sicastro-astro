@@ -1,0 +1,450 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import Section from '@/components/ui/Section.astro';
+import Container from '@/components/ui/Container.astro';
+import Button from '@/components/ui/Button.astro';
+import SectionTitle from '@/components/ui/SectionTitle.astro';
+import Card from '@/components/ui/Card.astro';
+import BenefitCard from '@/components/BenefitCard.astro';
+import ProcessStep from '@/components/ProcessStep.astro';
+import UseCaseCard from '@/components/UseCaseCard.astro';
+import ChecklistItem from '@/components/ChecklistItem.astro';
+import TestimonialCard from '@/components/TestimonialCard.astro';
+import FAQItem from '@/components/FAQItem.astro';
+import type { SEO, Testimonial, FAQItem as FAQItemType } from '@/types';
+
+const seo: SEO = {
+  title: 'Asesoría Fiscal 1:1 | Resuelve tus Dudas con un Contador Certificado',
+  description: 'Agenda una sesión de 1 hora por videollamada con un contador certificado. Resuelve tus dudas fiscales, evita errores costosos y toma decisiones informadas. $1,200 por sesión.',
+  keywords: 'asesoría fiscal, contador certificado, consultoría contable, dudas fiscales, SAT México, asesoría en línea',
+  ogImage: '/og-asesoria.jpg',
+};
+
+// Testimonials data
+const testimonials: Testimonial[] = [
+  {
+    name: 'Roberto Méndez',
+    position: 'Arquitecto',
+    company: 'CDMX',
+    content: 'Pensé que era complicado, pero en 1 hora me resolvieron todas mis dudas. Valió cada peso. Ahora sé exactamente qué hacer.',
+    rating: 5,
+  },
+  {
+    name: 'María González',
+    position: 'Consultora',
+    company: 'Nuevo León',
+    content: 'Contraté la asesoría antes de cambiarme de régimen. Me ahorraron un error que me hubiera costado mucho más. Súper profesionales.',
+    rating: 5,
+  },
+  {
+    name: 'Carlos Ramírez',
+    position: 'Comerciante',
+    company: 'Jalisco',
+    content: 'Recibí un requerimiento del SAT y estaba en pánico. En la videollamada me explicaron todo claramente y me guiaron paso a paso. ¡Gracias!',
+    rating: 5,
+  },
+];
+
+// FAQ data
+const faqItems: FAQItemType[] = [
+  {
+    question: '¿Cuánto dura la sesión?',
+    answer: 'Exactamente 1 hora por videollamada. Si necesitas más tiempo, puedes agendar sesiones adicionales.',
+  },
+  {
+    question: '¿Qué necesito preparar?',
+    answer: 'Te enviaremos un cuestionario breve antes de la sesión para maximizar el tiempo. Si tienes documentos específicos, mejor.',
+  },
+  {
+    question: '¿Puedo grabar la sesión?',
+    answer: 'Sí, puedes grabar para tu referencia personal. Adicionalmente te enviamos un resumen por escrito.',
+  },
+  {
+    question: '¿Qué pasa si necesito más tiempo?',
+    answer: 'Puedes extender la sesión (se cobra proporcionalmente) o agendar una sesión adicional.',
+  },
+  {
+    question: '¿Ofrecen reembolso?',
+    answer: 'Sí. Si en los primeros 15 minutos consideras que no estamos resolviendo tu duda, te devolvemos el 100%.',
+  },
+  {
+    question: '¿Pueden ayudarme con trámites después?',
+    answer: 'Claro. Si necesitas que realicemos algún trámite o servicio adicional, te cotizamos al final de la sesión.',
+  },
+  {
+    question: '¿La asesoría es deducible?',
+    answer: 'Sí, si eres persona física con actividad empresarial o persona moral, es 100% deducible de impuestos.',
+  },
+];
+
+const whatsappNumber = '5544753602';
+const whatsappLink = `https://wa.me/${whatsappNumber}`;
+const agendarLink = 'https://sicastro.com/agendar';
+---
+
+<PageLayout seo={seo}>
+  <!-- Hero Section -->
+  <Section padding="none" class="bg-white">
+    <Container class="py-24 md:py-32">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-5xl md:text-6xl font-bold mb-6 text-text-primary leading-tight">
+          ¿Tienes Dudas Fiscales que te Están Quitando el Sueño?
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 text-text-secondary leading-relaxed">
+          Resuelve tus Preguntas con un Contador Certificado<br />
+          En Solo 1 Hora por Videollamada
+        </p>
+        
+        <!-- Key Benefits -->
+        <div class="flex flex-wrap justify-center gap-4 mb-10 text-base md:text-lg text-text-primary">
+          <div class="flex items-center">
+            <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>Sin contratos largos</span>
+          </div>
+          <div class="flex items-center">
+            <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>Respuestas claras y accionables</span>
+          </div>
+          <div class="flex items-center">
+            <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>Desde cualquier lugar de México</span>
+          </div>
+        </div>
+
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row gap-3 justify-center mb-8">
+          <Button href={agendarLink} size="lg" variant="primary">
+            Agendar Mi Asesoría Ahora
+          </Button>
+          <Button href="#como-funciona" size="lg" variant="secondary">
+            Ver Cómo Funciona
+          </Button>
+        </div>
+
+        <!-- Pricing Info -->
+        <p class="text-base text-text-tertiary">
+          Inversión: <span class="font-semibold text-text-primary">$1,200 por sesión</span> | Disponibilidad inmediata
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Por Qué Agendar Section -->
+  <Section background="background">
+    <Container>
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4 text-text-primary">
+          Una Hora que Puede Ahorrarte Miles de Pesos
+        </h2>
+        <p class="text-xl text-text-secondary">
+          (y Dolores de Cabeza)
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <BenefitCard
+          icon="💰"
+          title="Evita Errores Costosos"
+          description="Un error fiscal puede costarte multas de +$20,000. Una hora de asesoría preventiva es la mejor inversión."
+        />
+        <BenefitCard
+          icon="⏱️"
+          title="Ahorra Tiempo Valioso"
+          description="Deja de perder horas investigando en internet. Obtén respuestas directas de un experto en 60 minutos."
+        />
+        <BenefitCard
+          icon="✅"
+          title="Toma Decisiones Informadas"
+          description="¿Cambiar de régimen? ¿Contratar empleados? ¿Abrir empresa? Conoce las implicaciones fiscales ANTES de decidir."
+        />
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Cómo Funciona Section -->
+  <Section background="white" id="como-funciona">
+    <Container>
+      <SectionTitle
+        title="Agendar tu Asesoría es Muy Simple"
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <ProcessStep
+          number="1"
+          title="AGENDA"
+          description="Elige fecha y hora que te convenga. Pago seguro en línea con tarjeta."
+        />
+        <ProcessStep
+          number="2"
+          title="PREPARA"
+          description="Te enviamos un cuestionario breve para conocer tu situación previamente."
+        />
+        <ProcessStep
+          number="3"
+          title="CONÉCTATE"
+          description="Videollamada privada de 1 hora con uno de nuestros contadores."
+        />
+        <ProcessStep
+          number="4"
+          title="ACTÚA"
+          description="Recibes un resumen por escrito con las recomendaciones clave."
+        />
+      </div>
+
+      <div class="text-center">
+        <Button href={agendarLink} variant="primary" size="lg">
+          Agendar Ahora →
+        </Button>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Para Quién Es Section -->
+  <Section background="background">
+    <Container>
+      <SectionTitle
+        title="Esta Sesión es Perfecta si..."
+      />
+
+      <div class="max-w-3xl mx-auto">
+        <Card padding="lg">
+          <ul class="space-y-4">
+            <ChecklistItem text="Eres profesionista independiente y no sabes si estás cumpliendo correctamente" />
+            <ChecklistItem text="Quieres cambiar de régimen fiscal pero no sabes cuál te conviene" />
+            <ChecklistItem text="Estás pensando en contratar empleados y necesitas entender las obligaciones" />
+            <ChecklistItem text="Recibiste un requerimiento del SAT y no sabes cómo responder" />
+            <ChecklistItem text="Quieres saber qué gastos puedes deducir legalmente" />
+            <ChecklistItem text="Necesitas validar una decisión financiera importante" />
+            <ChecklistItem text="Tienes declaraciones atrasadas y quieres regularizarte" />
+            <ChecklistItem text="Estás por abrir un negocio y quieres hacerlo bien desde el inicio" />
+          </ul>
+
+          <div class="text-center mt-10">
+            <Button href={agendarLink} variant="primary" size="lg">
+              Reservar Mi Sesión
+            </Button>
+          </div>
+        </Card>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Qué Incluye Section -->
+  <Section background="white">
+    <Container>
+      <SectionTitle
+        title="Esto es lo que Obtienes en tu Sesión de 1 Hora"
+      />
+
+      <div class="max-w-3xl mx-auto">
+        <Card padding="lg">
+          <ul class="space-y-4 mb-10">
+            <ChecklistItem text="Videollamada privada de 60 minutos con contador certificado" />
+            <ChecklistItem text="Análisis de tu situación fiscal específica" />
+            <ChecklistItem text="Respuesta a hasta 3 preguntas prioritarias" />
+            <ChecklistItem text="Identificación de oportunidades de ahorro fiscal" />
+            <ChecklistItem text="Recomendaciones accionables y personalizadas" />
+            <ChecklistItem text="Resumen ejecutivo por escrito (enviado en 24 hrs)" />
+            <ChecklistItem text="Validación de que estás cumpliendo correctamente" />
+            <ChecklistItem text="Referencias a documentación oficial del SAT" />
+          </ul>
+
+          <div class="border-t border-border pt-8 text-center">
+            <p class="text-3xl font-bold text-text-primary mb-2">
+              Inversión: $1,200
+            </p>
+            <p class="text-sm text-text-secondary mb-8">
+              (100% deducible de impuestos si eres actividad empresarial)
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+              <Button href={agendarLink} variant="primary" size="lg">
+                Agendar Ahora
+              </Button>
+              <Button href="#faq" variant="secondary" size="lg">
+                Tengo Preguntas
+              </Button>
+            </div>
+          </div>
+        </Card>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Casos Reales Section -->
+  <Section background="background">
+    <Container>
+      <SectionTitle
+        title="Mira Cómo Hemos Ayudado a Otros"
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <UseCaseCard
+          title="¿RESICO o Actividad Empresarial?"
+          description="Ana, diseñadora freelance, facturaba $80k/mes y no sabía si debía cambiar de régimen. En la asesoría calculamos que con Actividad Empresarial ahorraría $35,000 al año en impuestos."
+          metric="Problema resuelto en: 1 sesión"
+          metricValue="Ahorro identificado: $35,000/año"
+        />
+        <UseCaseCard
+          title="Requerimiento del SAT"
+          description="Carlos recibió un requerimiento por diferencias en su declaración anual. En la asesoría identificamos el error, le explicamos cómo corregirlo y evitó una multa de $18,000."
+          metric="Problema resuelto en: 1 sesión"
+          metricValue="Multa evitada: $18,000"
+        />
+        <UseCaseCard
+          title="Primer Empleado"
+          description="Laura iba a contratar a su primera empleada pero no sabía los costos reales. Le explicamos IMSS, nómina y obligaciones. Ahora tiene 3 empleados sin problemas."
+          metric="Problema resuelto en: 1 sesión"
+          metricValue="Tranquilidad: No tiene precio"
+        />
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Testimonials Section -->
+  <Section background="white">
+    <Container>
+      <SectionTitle
+        title="Lo Que Dicen Quienes ya Agendaron"
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {testimonials.map(testimonial => (
+          <TestimonialCard testimonial={testimonial} />
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Pricing Section -->
+  <Section background="background">
+    <Container>
+      <SectionTitle
+        title="Inversión Clara, Sin Sorpresas"
+      />
+
+      <div class="max-w-2xl mx-auto">
+        <Card padding="lg" class="text-center">
+          <h3 class="text-2xl font-bold text-text-primary mb-6">
+            ASESORÍA FISCAL 1:1
+          </h3>
+
+          <div class="mb-8">
+            <p class="text-5xl font-bold text-text-primary mb-2">
+              $1,200
+            </p>
+            <p class="text-xl text-text-secondary">
+              por sesión de 1 hora
+            </p>
+          </div>
+
+          <ul class="space-y-3 mb-10 text-left max-w-md mx-auto">
+            <ChecklistItem text="Videollamada privada con contador certificado" />
+            <ChecklistItem text="Análisis de tu caso específico" />
+            <ChecklistItem text="Recomendaciones personalizadas por escrito" />
+            <ChecklistItem text="Sin compromiso de contratación adicional" />
+          </ul>
+
+          <Button href={agendarLink} variant="primary" size="lg" class="w-full sm:w-auto">
+            Agendar Mi Asesoría
+          </Button>
+        </Card>
+
+        <div class="mt-12 p-6 bg-primary-light rounded-lg border border-primary/20">
+          <p class="text-base text-text-primary mb-2">
+            <span class="font-semibold">💡 ¿Necesitas contabilidad mensual?</span>
+          </p>
+          <p class="text-sm text-text-secondary">
+            Si después de la asesoría decides contratar nuestro servicio de contabilidad mensual, te descontamos el 100% del costo de esta sesión de tu primer mes.
+          </p>
+          <div class="mt-4">
+            <Button href="/servicios" variant="ghost" size="sm">
+              Ver Servicios de Contabilidad →
+            </Button>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- FAQ Section -->
+  <Section background="white" id="faq">
+    <Container>
+      <SectionTitle
+        title="Preguntas Frecuentes"
+      />
+
+      <div class="max-w-3xl mx-auto">
+        <div class="bg-white rounded-lg border border-border p-8 md:p-10">
+          {faqItems.map((item, index) => (
+            <FAQItem item={item} index={index} />
+          ))}
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Final CTA Section -->
+  <Section background="background">
+    <Container>
+      <div class="max-w-3xl mx-auto">
+        <Card padding="lg" class="bg-primary-light border-primary/30">
+          <div class="text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-text-primary">
+              ¿Listo para Resolver tus Dudas Fiscales?
+            </h2>
+            <p class="text-xl mb-8 text-text-secondary">
+              No Sigas Perdiendo Tiempo (ni Dinero) Adivinando
+            </p>
+            <p class="text-lg mb-10 text-text-primary leading-relaxed">
+              Agenda tu sesión de 1 hora con un contador certificado<br />
+              y toma decisiones informadas desde hoy
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-3 justify-center mb-8">
+              <Button href={agendarLink} variant="primary" size="lg">
+                Agendar Mi Asesoría Ahora
+              </Button>
+              <Button href={whatsappLink} variant="secondary" size="lg" target="_blank" rel="noopener noreferrer">
+                WhatsApp: (55) 4475-3602
+              </Button>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4 text-sm text-text-secondary">
+              <div class="flex items-center">
+                <svg class="w-4 h-4 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Disponibilidad inmediata</span>
+              </div>
+              <div class="flex items-center">
+                <svg class="w-4 h-4 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>100% en línea</span>
+              </div>
+              <div class="flex items-center">
+                <svg class="w-4 h-4 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Pago seguro</span>
+              </div>
+              <div class="flex items-center">
+                <svg class="w-4 h-4 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Garantía de satisfacción</span>
+              </div>
+            </div>
+          </div>
+        </Card>
+      </div>
+    </Container>
+  </Section>
+</PageLayout>

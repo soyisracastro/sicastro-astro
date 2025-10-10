@@ -1,0 +1,26 @@
+---
+interface Props {
+  number: string;
+  title: string;
+  description: string;
+}
+
+const { number, title, description } = Astro.props;
+---
+
+<div class="text-center">
+  <!-- Number Badge -->
+  <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary text-white text-2xl font-bold mb-6">
+    {number}
+  </div>
+
+  <!-- Title -->
+  <h3 class="text-xl font-bold text-text-primary mb-3 uppercase tracking-wide">
+    {title}
+  </h3>
+
+  <!-- Description -->
+  <p class="text-base text-text-secondary leading-relaxed">
+    {description}
+  </p>
+</div>
