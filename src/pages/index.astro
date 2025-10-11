@@ -4,18 +4,16 @@ import Section from '@/components/ui/Section.astro';
 import Container from '@/components/ui/Container.astro';
 import Button from '@/components/ui/Button.astro';
 import SectionTitle from '@/components/ui/SectionTitle.astro';
-import ServiceCard from '@/components/ServiceCard.astro';
 import StatCard from '@/components/StatCard.astro';
+import PricingPlanCard from '@/components/PricingPlanCard.astro';
+import LeadMagnetCard from '@/components/LeadMagnetCard.astro';
 import TestimonialCard from '@/components/TestimonialCard.astro';
 import BlogCard from '@/components/BlogCard.astro';
 import FAQItem from '@/components/FAQItem.astro';
 import { defaultSEO, stats, testimonials, faqItems, companyInfo } from '@/lib/data';
-import { getFeaturedServices } from '@/lib/services';
 import { fetchGraphQL } from '@/lib/wordpress/client';
 import { GET_POSTS } from '@/lib/wordpress/queries';
 import type { PostsQueryResponse } from '@/lib/wordpress/types';
-
-const featuredServices = getFeaturedServices();
 
 // Fetch latest blog posts from WordPress
 let blogPosts: Array<{
@@ -46,23 +44,66 @@ try {
 ---
 
 <PageLayout seo={defaultSEO}>
-  <!-- Hero Section - Minimalista con jerarquía tipográfica -->
+  <!-- Hero Section - 2 columnas -->
   <Section padding="none" class="bg-white">
     <Container class="py-24 md:py-32">
-      <div class="max-w-4xl mx-auto text-center">
-        <h1 class="text-5xl md:text-6xl font-bold mb-6 text-text-primary leading-tight">
-          Tu Socio Estratégico en Materia Fiscal y Contable
-        </h1>
-        <p class="text-xl md:text-2xl mb-10 text-text-secondary leading-relaxed">
-          Más de 15 años de experiencia brindando soluciones integrales a empresas en México
-        </p>
-        <div class="flex flex-col sm:flex-row gap-3 justify-center">
-          <Button href="/servicios" size="lg" variant="primary">
-            Ver Servicios
-          </Button>
-          <Button href="/contacto" size="lg" variant="secondary">
-            Solicitar Consulta
-          </Button>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Columna izquierda: Texto -->
+        <div>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-text-primary leading-tight">
+            ¿Cansado de las Sorpresas del SAT?
+          </h1>
+          <p class="text-xl md:text-2xl mb-6 text-text-secondary leading-relaxed">
+            Llevamos tu contabilidad o resolvemos tus dudas fiscales para que te enfoques en hacer crecer tu negocio
+          </p>
+          
+          <!-- Credenciales -->
+          <div class="flex flex-wrap gap-4 text-sm text-text-tertiary mb-8">
+            <span class="flex items-center">
+              <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Contadores certificados
+            </span>
+            <span class="flex items-center">
+              <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              +25 años de experiencia
+            </span>
+            <span class="flex items-center">
+              <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              100% en línea
+            </span>
+          </div>
+
+          <!-- CTAs -->
+          <div class="flex flex-col sm:flex-row gap-3 mb-6">
+            <Button href="/asesoria" size="lg" variant="primary">
+              Asesoría 1:1
+            </Button>
+            <Button href="#servicios" size="lg" variant="secondary">
+              Planes de Contabilidad
+            </Button>
+          </div>
+
+          <!-- Disclaimer -->
+          <p class="text-sm text-text-tertiary">
+            Sin compromisos a largo plazo · Servicio en toda la República
+          </p>
+        </div>
+
+        <!-- Columna derecha: Imagen placeholder -->
+        <div class="relative">
+          <div class="aspect-square rounded-lg border border-border bg-background p-12 flex items-center justify-center">
+            <div class="text-center">
+              <div class="text-7xl mb-6">💼</div>
+              <p class="text-lg text-text-secondary">Contador en videollamada</p>
+              <p class="text-sm text-text-tertiary mt-2">[Placeholder para imagen]</p>
+            </div>
+          </div>
         </div>
       </div>
     </Container>
@@ -79,83 +120,110 @@ try {
     </Container>
   </Section>
 
-  <!-- Featured Services Section -->
+  <!-- Lead Magnet - Test Interactivo -->
   <Section background="white">
     <Container>
+      <LeadMagnetCard />
+    </Container>
+  </Section>
+
+  <!-- Pricing Plans Section -->
+  <Section background="background" id="servicios">
+    <Container>
       <SectionTitle
-        title="Nuestros Servicios"
-        subtitle="Soluciones integrales diseñadas para el éxito de tu empresa"
+        title="Servicios Diseñados para tu Tranquilidad Fiscal"
+        subtitle="Elige el plan que se adapte a tu etapa de crecimiento"
       />
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-        {featuredServices.map(service => (
-          <ServiceCard service={service} />
-        ))}
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <PricingPlanCard
+          title="PLAN BÁSICO"
+          price="$3,500/mes*"
+          description="Lo esencial para estar en regla"
+          features={[
+            'Declaraciones mensuales',
+            'Contabilidad fiscal',
+            'Gestión SAT',
+            '1 asesoría mensual'
+          ]}
+          idealFor="Profesionistas independientes sin empleados"
+          ctaText="Ver Detalles"
+          ctaHref="/servicios"
+        />
+
+        <PricingPlanCard
+          title="PLAN PREMIUM"
+          price="$6,200/mes*"
+          description="Todo lo que necesitas para crecer"
+          features={[
+            'Todo lo del Plan Básico',
+            'Nómina hasta 5 empleados',
+            'Estados financieros',
+            'Planeación fiscal trimestral',
+            'Asesoría prioritaria'
+          ]}
+          idealFor="Negocios con empleados"
+          ctaText="Ver Detalles"
+          ctaHref="/servicios"
+          popular={true}
+        />
+
+        <PricingPlanCard
+          title="PLAN EMPRESARIAL"
+          price="Desde $10,500/mes*"
+          description="Soluciones para empresas"
+          features={[
+            'Contabilidad corporativa completa',
+            'Nómina hasta 50 empleados',
+            'Planeación fiscal mensual',
+            'Acompañamiento estratégico'
+          ]}
+          idealFor="Personas morales"
+          ctaText="Cotizar"
+          ctaHref="/contacto"
+        />
       </div>
 
+      <p class="text-center text-sm text-text-tertiary mb-8">
+        *Impuestos incluidos · Sin costos ocultos · Cancela cuando quieras · Servicio 100% en línea
+      </p>
+
       <div class="text-center">
-        <Button href="/servicios" variant="primary" size="lg">
-          Ver Todos los Servicios
+        <Button href="/servicios" variant="secondary" size="lg">
+          Ver Más Servicios →
         </Button>
       </div>
     </Container>
   </Section>
 
-  <!-- About Preview Section - Fondo blanco -->
-  <Section background="background">
+  <!-- About Preview Section - Historia -->
+  <Section background="white">
     <Container>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <div>
-          <h2 class="text-4xl md:text-5xl font-bold mb-6 text-text-primary">
-            {companyInfo.name}
-          </h2>
-          <p class="text-lg mb-6 text-text-secondary leading-relaxed">
-            {companyInfo.description}
-          </p>
-          <p class="text-lg mb-8 text-text-secondary leading-relaxed">
-            Fundados en {companyInfo.founded}, nos hemos consolidado como uno de los despachos contables más confiables de México, ofreciendo servicios de alta calidad respaldados por un equipo de profesionales certificados.
-          </p>
-          <ul class="space-y-3 mb-10">
-            <li class="flex items-start text-base text-text-primary">
-              <span class="mr-3 mt-1 text-text-tertiary">•</span>
-              <span>Equipo de profesionales certificados</span>
-            </li>
-            <li class="flex items-start text-base text-text-primary">
-              <span class="mr-3 mt-1 text-text-tertiary">•</span>
-              <span>Tecnología de vanguardia</span>
-            </li>
-            <li class="flex items-start text-base text-text-primary">
-              <span class="mr-3 mt-1 text-text-tertiary">•</span>
-              <span>Atención personalizada</span>
-            </li>
-          </ul>
-          <Button href="/sobre-nosotros" variant="primary" size="lg">
-            Conoce Más Sobre Nosotros
-          </Button>
-        </div>
-        
-        <div class="relative">
-          <div class="aspect-square rounded-lg border border-border bg-white p-12 flex items-center justify-center">
-            <div class="text-center">
-              <div class="text-7xl mb-6">🏆</div>
-              <p class="text-5xl font-bold mb-3 text-text-primary">+500</p>
-              <p class="text-lg text-text-secondary">Clientes Satisfechos</p>
-            </div>
-          </div>
-        </div>
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-text-primary">
+          El Equipo que Cuida tus Finanzas
+        </h2>
+        <p class="text-lg mb-6 text-text-secondary leading-relaxed">
+          Desde 1999, hemos sido el aliado contable de cientos de profesionistas y empresarios en México. Lo que comenzó como un pequeño despacho en Guerrero, hoy es S & I Castro Consultores: un equipo de 3 contadores públicos certificados comprometidos con tu tranquilidad fiscal, sin importar dónde te encuentres.
+        </p>
+        <p class="text-lg mb-10 text-text-secondary leading-relaxed">
+          Combinamos experiencia de más de 25 años con tecnología y actualización constante en reformas fiscales. Trabajamos 100% en línea para brindarte el mismo servicio personalizado que ofrecíamos presencialmente, pero con la comodidad de atenderte desde cualquier lugar de México.
+        </p>
+        <Button href="/sobre-nosotros" variant="primary" size="lg">
+          Conoce Nuestra Historia Completa →
+        </Button>
       </div>
     </Container>
   </Section>
 
   <!-- Testimonials Section -->
-  <Section background="white">
+  <Section background="background">
     <Container>
       <SectionTitle
         title="Lo Que Dicen Nuestros Clientes"
-        subtitle="La confianza de nuestros clientes es nuestro mejor respaldo"
       />
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {testimonials.map(testimonial => (
           <TestimonialCard testimonial={testimonial} />
         ))}
@@ -164,11 +232,11 @@ try {
   </Section>
 
   <!-- Blog Preview Section -->
-  <Section background="background">
+  <Section background="white">
     <Container>
       <SectionTitle
-        title="Últimas Noticias"
-        subtitle="Mantente informado sobre las novedades fiscales y contables"
+        title="Mantente Actualizado en Materia Fiscal"
+        subtitle="Tips, noticias y guías para que tomes mejores decisiones"
       />
       
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
@@ -186,11 +254,10 @@ try {
   </Section>
 
   <!-- FAQ Section -->
-  <Section background="white">
+  <Section background="background">
     <Container>
       <SectionTitle
         title="Preguntas Frecuentes"
-        subtitle="Resolvemos tus dudas sobre nuestros servicios"
       />
       
       <div class="max-w-3xl mx-auto">
@@ -201,26 +268,68 @@ try {
         </div>
       </div>
 
-      <div class="text-center mt-12">
-        <p class="text-lg text-text-secondary mb-4">
-          ¿Tienes más preguntas? Estamos aquí para ayudarte
+    </Container>
+  </Section>
+
+  <!-- CTA Final Section -->
+  <Section background="white">
+    <Container>
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-text-primary">
+          ¿Listo para Tener tus Finanzas en Orden?
+        </h2>
+        <p class="text-xl mb-10 text-text-secondary leading-relaxed">
+          Agenda una consulta sin costo y descubre cómo podemos ayudarte a crecer sin preocupaciones fiscales
         </p>
-        <Button href="/contacto" variant="primary" size="lg">
-          Contáctanos
-        </Button>
+        
+        <div class="flex flex-col sm:flex-row gap-3 justify-center mb-8">
+          <Button href="/agendar" variant="primary" size="lg">
+            Agendar Consulta Gratuita
+          </Button>
+          <Button href="#servicios" variant="secondary" size="lg">
+            Ver Nuestros Planes
+          </Button>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-6 text-sm text-text-tertiary">
+          <span class="flex items-center">
+            <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            Sin compromiso
+          </span>
+          <span class="flex items-center">
+            <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            100% confidencial
+          </span>
+          <span class="flex items-center">
+            <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            Atención en línea
+          </span>
+          <span class="flex items-center">
+            <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            Respuesta en 24 hrs
+          </span>
+        </div>
       </div>
     </Container>
   </Section>
 
-  <!-- Newsletter CTA Section - Fondo claro -->
+  <!-- Newsletter CTA Section -->
   <Section background="background">
     <Container>
       <div class="max-w-2xl mx-auto text-center">
-        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-text-primary">
-          Suscríbete a Nuestro Newsletter
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-text-primary">
+          Recibe Tips Fiscales en tu Correo
         </h2>
-        <p class="text-xl mb-10 text-text-secondary leading-relaxed">
-          Recibe las últimas actualizaciones fiscales, tips contables y noticias relevantes directamente en tu correo
+        <p class="text-lg mb-10 text-text-secondary leading-relaxed">
+          Mantente al día con las últimas actualizaciones fiscales, deducciones que puedes aprovechar y consejos prácticos para tu negocio
         </p>
         
         <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" action="/newsletter" method="POST">

@@ -34,7 +34,7 @@ const { testimonial } = Astro.props;
       <div>
         <div class="font-semibold text-text-primary text-[15px]">{testimonial.name}</div>
         <div class="text-sm text-text-tertiary">
-          {testimonial.position} · {testimonial.company}
+          {testimonial.position}, {testimonial.company}{testimonial.location ? ` · ${testimonial.location}` : ''}
         </div>
       </div>
     </div>
