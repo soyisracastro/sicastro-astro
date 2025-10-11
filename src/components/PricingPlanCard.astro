@@ -1,0 +1,72 @@
+---
+import Card from './ui/Card.astro';
+import Badge from './ui/Badge.astro';
+import Button from './ui/Button.astro';
+
+interface Props {
+  title: string;
+  price: string;
+  description: string;
+  features: string[];
+  idealFor: string;
+  ctaText: string;
+  ctaHref: string;
+  popular?: boolean;
+}
+
+const {
+  title,
+  price,
+  description,
+  features,
+  idealFor,
+  ctaText,
+  ctaHref,
+  popular = false,
+} = Astro.props;
+---
+
+<Card variant="hover" padding="lg" class="relative h-full flex flex-col">
+  <!-- Badge "Más Popular" -->
+  {popular && (
+    <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+      <Badge variant="primary" size="sm">MÁS POPULAR</Badge>
+    </div>
+  )}
+
+  <!-- Title -->
+  <h3 class="text-sm font-semibold text-text-tertiary uppercase tracking-wide mb-2">
+    {title}
+  </h3>
+
+  <!-- Price -->
+  <div class="mb-4">
+    <span class="text-4xl font-bold text-text-primary">{price}</span>
+  </div>
+
+  <!-- Description -->
+  <p class="text-[15px] text-text-secondary mb-6 leading-relaxed">
+    {description}
+  </p>
+
+  <!-- Features -->
+  <ul class="space-y-3 mb-8 flex-grow">
+    {features.map(feature => (
+      <li class="flex items-start text-[15px] text-text-primary">
+        <span class="mr-3 mt-0.5 text-primary">→</span>
+        <span class="leading-relaxed">{feature}</span>
+      </li>
+    ))}
+  </ul>
+
+  <!-- Ideal for -->
+  <div class="mb-6 pb-6 border-t border-border pt-6">
+    <p class="text-sm text-text-tertiary mb-1">Ideal para:</p>
+    <p class="text-[15px] text-text-primary font-medium">{idealFor}</p>
+  </div>
+
+  <!-- CTA Button -->
+  <Button href={ctaHref} variant={popular ? 'primary' : 'secondary'} size="lg" class="w-full">
+    {ctaText}
+  </Button>
+</Card>

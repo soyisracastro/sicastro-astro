@@ -1,0 +1,64 @@
+---
+import Card from './ui/Card.astro';
+import Button from './ui/Button.astro';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<Card variant="bordered" padding="lg" class={className}>
+  <div class="text-center">
+    <!-- Icono/Imagen visual del test -->
+    <div class="mb-6 flex justify-center">
+      <div class="w-24 h-24 bg-primary-light rounded-lg flex items-center justify-center border border-primary/20">
+        <span class="text-5xl">📋</span>
+      </div>
+    </div>
+
+    <!-- Título -->
+    <h3 class="text-2xl md:text-3xl font-bold text-text-primary mb-4 leading-tight">
+      ¿Estás Perdiendo Miles de Pesos<br />en Impuestos Sin Saberlo?
+    </h3>
+
+    <!-- Subtítulo -->
+    <p class="text-lg text-text-secondary mb-8 max-w-2xl mx-auto leading-relaxed">
+      Descubre en 5 minutos si tu contabilidad tiene errores<br />que te están costando dinero
+    </p>
+
+    <!-- Features del test -->
+    <div class="mb-8 space-y-3">
+      <div class="flex items-start justify-center text-left">
+        <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        <span class="text-[15px] text-text-primary">Tu nivel de riesgo fiscal (bajo, medio, alto)</span>
+      </div>
+      <div class="flex items-start justify-center text-left">
+        <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        <span class="text-[15px] text-text-primary">Áreas específicas donde podrías estar perdiendo dinero</span>
+      </div>
+      <div class="flex items-start justify-center text-left">
+        <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        <span class="text-[15px] text-text-primary">Recomendaciones personalizadas para tu situación</span>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <Button href="/contacto" variant="primary" size="lg" class="mb-4">
+      Hacer el Test Gratuito →
+    </Button>
+
+    <!-- Social proof -->
+    <p class="text-sm text-text-tertiary">
+      *Más de 200 profesionistas en todo México ya descubrieron<br />
+      oportunidades de ahorro que desconocían
+    </p>
+  </div>
+</Card>

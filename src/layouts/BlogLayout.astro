@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import BaseLayout from './BaseLayout.astro';
 import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
@@ -29,7 +28,7 @@ const { seo, title, date, author, category, image, imageWidth = 1200, imageHeigh
     <!-- Hero Section with Featured Image - Minimalista -->
     {image && (
       <div class="relative w-full h-[400px] md:h-[400px] bg-background border-b border-border">
-        <Image
+        <img
           src={image}
           alt={title}
           width={imageWidth}
@@ -113,7 +112,7 @@ const { seo, title, date, author, category, image, imageWidth = 1200, imageHeigh
                 Facebook
               </a>
               <a
-                href={`https://twitter.com/intent/tweet?url=${Astro.url.href}&text=${encodeURIComponent(title)}`}
+                href={`https://twitter.com/intent/tweet?url=${Astro.url.href}&text=${globalThis.encodeURIComponent(title)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-flex items-center px-4 py-2 border border-border text-text-primary rounded-md hover:bg-background-hover transition-colors duration-fast"

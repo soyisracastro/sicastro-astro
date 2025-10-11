@@ -113,6 +113,7 @@ export interface Testimonial {
   content: string;
   rating: number;
   image?: string;
+  location?: string;
 }
 
 // ============================================

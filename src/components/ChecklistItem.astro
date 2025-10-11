@@ -1,0 +1,25 @@
+---
+interface Props {
+  text: string;
+  checked?: boolean;
+}
+
+const { text, checked = true } = Astro.props;
+---
+
+<li class="flex items-start text-base text-text-primary">
+  <svg
+    class="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-primary"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    {checked ? (
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+    ) : (
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    )}
+  </svg>
+  <span class="leading-relaxed">{text}</span>
+</li>

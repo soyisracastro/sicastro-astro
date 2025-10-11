@@ -30,27 +30,27 @@ export const navItems: NavItem[] = [
 export const stats: Stat[] = [
   {
     id: 'years',
-    value: '15+',
-    label: 'Años de experiencia',
+    value: '25+',
+    label: 'Años de Experiencia',
     icon: '📅',
   },
   {
     id: 'clients',
     value: '500+',
-    label: 'Clientes satisfechos',
+    label: 'Clientes Satisfechos',
     icon: '🤝',
   },
   {
-    id: 'success',
-    value: '98%',
-    label: 'Tasa de cumplimiento',
+    id: 'fines',
+    value: '0',
+    label: 'Multas por Nuestro Error',
     icon: '✅',
   },
   {
-    id: 'team',
-    value: '20+',
-    label: 'Profesionales certificados',
-    icon: '👥',
+    id: 'declarations',
+    value: '98%',
+    label: 'Declaraciones A Tiempo',
+    icon: '📊',
   },
 ];
 
@@ -61,35 +61,30 @@ export const stats: Stat[] = [
 export const testimonials: Testimonial[] = [
   {
     id: '1',
-    name: 'María González',
-    company: 'Tech Solutions SA de CV',
-    position: 'Directora General',
-    content: 'Excelente servicio de asesoría fiscal. Nos han ayudado a optimizar nuestra carga tributaria de manera legal y transparente. Su equipo siempre está actualizado con los cambios del SAT.',
+    name: 'Roberto Méndez',
+    company: 'RESICO',
+    position: 'Arquitecto Independiente',
+    content: 'Antes vivía estresado con las declaraciones. Desde que contraté a S & I Castro, duermo tranquilo sabiendo que todo está en orden. Y ni siquiera tuve que ir a una oficina, todo fue en línea.',
     rating: 5,
+    location: 'CDMX',
   },
   {
     id: '2',
-    name: 'Roberto Martínez',
-    company: 'Comercializadora del Norte',
-    position: 'Propietario',
-    content: 'La constitución de mi empresa fue muy sencilla gracias a S I Castro. Me guiaron en cada paso y resolvieron todas mis dudas. Altamente recomendados.',
+    name: 'María González',
+    company: 'Actividad Empresarial',
+    position: 'Consultora de Marketing',
+    content: 'Me ayudaron a recuperar más de $45,000 en devoluciones que no sabía que podía reclamar. Su servicio se pagó solo en el primer mes. Trabajo con ellos desde Monterrey sin problema.',
     rating: 5,
+    location: 'Nuevo León',
   },
   {
     id: '3',
-    name: 'Ana Sánchez',
-    company: 'Restaurante La Tradición',
-    position: 'Socia',
-    content: 'Llevan nuestra contabilidad desde hace 5 años. Son muy profesionales y siempre entregan todo a tiempo. Nos dan tranquilidad en temas fiscales.',
+    name: 'Carlos Ramírez',
+    company: 'Persona Moral',
+    position: 'Dueño de Ferretería',
+    content: 'Tenemos 8 empleados y antes era un caos la nómina. Ahora todo está automatizado y sin errores. El servicio en línea es excelente, responden súper rápido.',
     rating: 5,
-  },
-  {
-    id: '4',
-    name: 'Carlos Hernández',
-    company: 'Constructora Moderna',
-    position: 'Director Financiero',
-    content: 'La consultoría financiera que nos brindaron fue clave para reestructurar nuestro negocio. Sus proyecciones fueron muy acertadas y nos ayudaron a crecer.',
-    rating: 5,
+    location: 'Jalisco',
   },
 ];
 
@@ -100,45 +95,33 @@ export const testimonials: Testimonial[] = [
 export const faqItems: FAQItem[] = [
   {
     id: '1',
-    question: '¿Qué documentos necesito para empezar con su servicio de contabilidad?',
-    answer: 'Necesitarás tu RFC, estados de cuenta bancarios del último mes, facturas de compras y ventas, y la información de tu empresa (razón social, domicilio fiscal). Nuestro equipo te guiará en el proceso de recopilación de documentos.',
-    category: 'contabilidad',
-  },
-  {
-    id: '2',
-    question: '¿Cuánto tiempo toma constituir una empresa?',
-    answer: 'El proceso completo de constitución toma entre 2 y 4 semanas, dependiendo de la complejidad y los trámites ante notario. Incluye la elaboración del acta constitutiva, obtención del RFC, alta en el IMSS y demás registros necesarios.',
-    category: 'legal',
-  },
-  {
-    id: '3',
-    question: '¿Ofrecen asesoría para personas físicas o solo empresas?',
-    answer: 'Atendemos tanto a personas físicas con actividad empresarial como a personas morales. Nuestros servicios están diseñados para adaptarse a las necesidades específicas de cada cliente.',
+    question: '¿Por qué debería contratar un contador en lugar de hacerlo yo mismo?',
+    answer: 'Porque tu tiempo vale más que lo que inviertes en el servicio. Un error fiscal puede costarte multas de miles de pesos, sin contar el estrés y tiempo perdido. Además, un contador identifica deducciones y oportunidades de ahorro que difícilmente detectarías solo.',
     category: 'servicios',
   },
   {
-    id: '4',
-    question: '¿Con qué frecuencia debo presentar declaraciones fiscales?',
-    answer: 'Depende de tu régimen fiscal. Las personas morales generalmente presentan declaraciones mensuales de IVA e ISR, además de la anual. Las personas físicas pueden ser mensuales o bimestrales según su actividad. Nosotros nos encargamos de todos estos trámites.',
+    id: '2',
+    question: '¿Qué incluye exactamente cada plan?',
+    answer: 'Cada plan está diseñado para diferentes necesidades. El Plan Básico cubre lo esencial para cumplir, el Premium incluye nómina y planeación, y el Empresarial es para personas morales con mayor complejidad. Puedes ver la comparativa detallada en nuestra página de servicios.',
+    category: 'servicios',
+  },
+  {
+    id: '3',
+    question: '¿Qué pasa si tengo declaraciones atrasadas?',
+    answer: 'No hay problema. Ofrecemos servicios de regularización fiscal. Evaluamos tu situación sin costo y te presentamos un plan para ponerte al corriente con el SAT, minimizando multas y recargos.',
     category: 'fiscal',
+  },
+  {
+    id: '4',
+    question: '¿Cómo funciona el servicio 100% en línea?',
+    answer: 'Muy simple: después de contratar tu plan, coordinamos una videollamada inicial para conocer tu situación. Te damos acceso a una carpeta compartida (Google Drive o Dropbox) donde subirás tus facturas y documentos. Nosotros nos encargamos de todo lo demás: contabilidad, declaraciones y trámites. Puedes contactarnos por WhatsApp, correo o videollamada cuando lo necesites. Todo el proceso es digital, seguro y desde la comodidad de tu casa u oficina, sin importar en qué ciudad te encuentres.',
+    category: 'servicios',
   },
   {
     id: '5',
-    question: '¿Qué incluye el servicio de nómina?',
-    answer: 'Incluye el cálculo de sueldos, impuestos y prestaciones, emisión de recibos de nómina con CFDI, cálculo de cuotas obrero-patronales, presentación de declaraciones ante IMSS e INFONAVIT, y asesoría en temas laborales.',
-    category: 'nomina',
-  },
-  {
-    id: '6',
-    question: '¿Cómo puedo reducir legalmente mi carga fiscal?',
-    answer: 'A través de nuestro servicio de planeación fiscal analizamos tu situación y diseñamos estrategias legales como aprovechamiento de deducciones autorizadas, elección del régimen fiscal más conveniente, y uso de estímulos fiscales. Todo dentro del marco legal vigente.',
-    category: 'fiscal',
-  },
-  {
-    id: '7',
-    question: '¿Qué pasa si el SAT me solicita información?',
-    answer: 'Nuestro servicio de representación legal fiscal te respalda. Atendemos requerimientos, preparamos la documentación necesaria y te representamos ante las autoridades fiscales para resolver la situación de manera favorable.',
-    category: 'legal',
+    question: '¿Puedo cancelar en cualquier momento?',
+    answer: 'Sí. No hay contratos forzosos. Trabajamos mes a mes. Si decides cancelar, solo necesitamos un aviso con 30 días de anticipación para hacer la transición ordenadamente.',
+    category: 'servicios',
   },
 ];
 
@@ -205,11 +188,11 @@ export const contactInfo = {
 // ============================================
 
 export const companyInfo = {
-  name: 'S I Castro Consultores',
+  name: 'S & I Castro Consultores',
   legalName: 'S I Castro Consultores S.C.',
   slogan: 'Tu socio estratégico en materia fiscal y contable',
-  description: 'Despacho contable con más de 15 años de experiencia brindando servicios de asesoría fiscal, contabilidad, auditoría y consultoría financiera a empresas y personas físicas.',
-  founded: 2008,
+  description: 'Desde 1999, hemos sido el aliado contable de cientos de profesionistas y empresarios en México. Lo que comenzó como un pequeño despacho en Guerrero, hoy es S & I Castro Consultores: un equipo de 3 contadores públicos certificados comprometidos con tu tranquilidad fiscal, sin importar dónde te encuentres.',
+  founded: 1999,
   rfc: 'SIC080101XXX',
 };
 
