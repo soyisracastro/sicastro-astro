@@ -2,7 +2,7 @@
 interface Props {
   class?: string;
   padding?: 'none' | 'sm' | 'md' | 'lg';
-  background?: 'white' | 'background' | 'subtle';
+  background?: 'white' | 'background' | 'subtle' | 'gradient';
   id?: string;
 }
 
@@ -24,6 +24,7 @@ const backgroundClasses = {
   white: 'bg-white',
   background: 'bg-background',
   subtle: 'bg-background',
+  gradient: 'bg-gradient-primary',
 };
 
 const classes = `${paddingClasses[padding]} ${backgroundClasses[background]} ${className}`;
